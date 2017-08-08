@@ -12,8 +12,23 @@ using YT.MultiTenancy;
 
 namespace YT.Authorization
 {
+    /// <summary>
+    /// µÇÂ½¹ÜÀí
+    /// </summary>
     public class LogInManager : AbpLogInManager<Tenant, Role, User>
     {
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="userManager"></param>
+        /// <param name="multiTenancyConfig"></param>
+        /// <param name="tenantRepository"></param>
+        /// <param name="unitOfWorkManager"></param>
+        /// <param name="settingManager"></param>
+        /// <param name="userLoginAttemptRepository"></param>
+        /// <param name="userManagementConfig"></param>
+        /// <param name="iocResolver"></param>
+        /// <param name="roleManager"></param>
         public LogInManager(
             UserManager userManager, 
             IMultiTenancyConfig multiTenancyConfig, 

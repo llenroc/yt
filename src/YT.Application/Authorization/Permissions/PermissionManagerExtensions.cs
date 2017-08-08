@@ -5,6 +5,9 @@ using Abp.Runtime.Validation;
 
 namespace YT.Authorization.Permissions
 {
+    /// <summary>
+    /// 权限帮助类拓展方法
+    /// </summary>
     public static class PermissionManagerExtensions
     {
         /// <summary>
@@ -29,7 +32,8 @@ namespace YT.Authorization.Permissions
 
             if (undefinedPermissionNames.Count > 0)
             {
-                throw new AbpValidationException(string.Format("There are {0} undefined permission names.", undefinedPermissionNames.Count))
+                throw new AbpValidationException(
+                    $"There are {undefinedPermissionNames.Count} undefined permission names.")
                       {
                           ValidationErrors = undefinedPermissionNames.ConvertAll(permissionName => new ValidationResult("Undefined permission: " + permissionName))
                       };
