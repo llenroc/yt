@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Abp.Configuration.Startup;
 using Abp.Notifications;
 using YT.Authorizations.Startup;
+using YT.Managers.Roles.Startup;
+using YT.Managers.Users.Startup;
 using YT.Navigations.Startup;
 
 namespace YT
@@ -16,8 +18,8 @@ namespace YT
           ISettingsConfiguration settingsConfiguration,
         //  IDictionaryConfiguration dictionaryConfiguration,
           IMenuConfiguration menuConfiguration,
-        //  IRoleConfiguration roleConfiguration,
-       //   IUserConfiguration userConfiguration,
+          IRoleConfiguration roleConfiguration,
+          IUserConfiguration userConfiguration,
           INotificationConfiguration notificationConfiguration,
              IPermissionConfiguration permissions
             )
@@ -26,8 +28,8 @@ namespace YT
          //   Dictionaries = dictionaryConfiguration;
             Menus = menuConfiguration;
 
-         //   Roles = roleConfiguration;
-         //   Users = userConfiguration;
+            Roles = roleConfiguration;
+            Users = userConfiguration;
             Notifications = notificationConfiguration;
             Permissions = permissions;
         }
@@ -38,9 +40,9 @@ namespace YT
 
         public IPermissionConfiguration Permissions { get; }
 
-     //   public IDictionaryConfiguration Dictionaries { get; }
+        public IUserConfiguration Users { get; }
 
-     //   public IRoleConfiguration Roles { get; }
+        public IRoleConfiguration Roles { get; }
 
         public INotificationConfiguration Notifications { get; }
 

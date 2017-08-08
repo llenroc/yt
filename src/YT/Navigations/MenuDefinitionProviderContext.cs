@@ -25,4 +25,22 @@ namespace YT.Navigations
             Manager = manager;
         }
     }
+    public class RoleDefinitionProviderContext
+    {
+        public IPermissionDefinitionManager Manager { get; private set; }
+
+        internal RoleDefinitionProviderContext(IPermissionDefinitionManager manager)
+        {
+            Manager = manager;
+        }
+    }
+    public class UserDefinitionProviderContext
+    {
+        public IPermissionDefinitionManager Manager { get; private set; }
+
+        internal UserDefinitionProviderContext(IPermissionDefinitionManager manager)
+        {
+            Manager = manager;
+        }
+    }
 }

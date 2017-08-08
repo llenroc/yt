@@ -143,10 +143,16 @@
     <Compile Include="Managers\Impersonation\ImpersonationCacheItem.cs" />
     <Compile Include="Managers\Impersonation\ImpersonationCacheManagerExtensions.cs" />
     <Compile Include="Managers\MultiTenancy\Tenant.cs" />
-    <Compile Include="Managers\Roles\AppRoleConfig.cs" />
+    <Compile Include="Managers\Roles\RoleDefinition.cs" />
+    <Compile Include="Managers\Roles\RoleDefinitionManager.cs" />
+    <Compile Include="Managers\Roles\RoleProvider.cs" />
+    <Compile Include="Managers\Roles\Startup\RoleConfiguration.cs" />
     <Compile Include="Managers\Roles\Role.cs" />
     <Compile Include="Managers\Roles\StaticRoleNames.cs" />
+    <Compile Include="Managers\Users\Startup\UserConfiguration.cs" />
     <Compile Include="Managers\Users\User.cs" />
+    <Compile Include="Managers\Users\UserDefinitionManager.cs" />
+    <Compile Include="Managers\Users\UserProvider.cs" />
     <Compile Include="ModuleConfig.cs" />
     <Compile Include="ModuleConfigurationExtensions.cs" />
     <Compile Include="Handlers\ILevelEntityHandler.cs" />

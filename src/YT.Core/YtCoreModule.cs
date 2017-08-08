@@ -76,7 +76,7 @@ namespace YT
             //    cache.DefaultSlidingExpireTime = TimeSpan.FromMinutes(30);
             //});
             //Configure roles
-            AppRoleConfig.Configure(Configuration.Modules.Zero().RoleManagement);
+          //  AppRoleConfig.Configure(Configuration.Modules.Zero().RoleManagement);
         
         }
 
