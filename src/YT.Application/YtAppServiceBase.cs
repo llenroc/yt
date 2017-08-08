@@ -7,6 +7,7 @@ using Abp.Runtime.Session;
 using Microsoft.AspNet.Identity;
 using YT.Authorization.Users;
 using YT.Managers.MultiTenancy;
+using YT.Managers.Users;
 using YT.MultiTenancy;
 
 namespace YT

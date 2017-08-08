@@ -3,6 +3,7 @@ using Abp.AutoMapper;
 using Abp.Localization;
 using Abp.Modules;
 using YT.Authorization;
+using YT.Managers;
 
 namespace YT
 {

@@ -1,9 +1,10 @@
 using Abp.Authorization.Roles;
 using Abp.Authorization.Users;
 using Abp.Domain.Repositories;
+using YT.Authorization.Roles;
 using YT.Authorization.Users;
 
-namespace YT.Authorization.Roles
+namespace YT.Managers.Roles
 {
     public class RoleStore : AbpRoleStore<Role, User>
     {

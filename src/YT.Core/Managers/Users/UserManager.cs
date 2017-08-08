@@ -12,9 +12,11 @@ using Abp.Organizations;
 using Abp.Runtime.Caching;
 using Abp.Threading;
 using YT.Authorization.Roles;
+using YT.Authorization.Users;
 using YT.Identity;
+using YT.Managers.Roles;
 
-namespace YT.Authorization.Users
+namespace YT.Managers.Users
 {
     /// <summary>
     /// User manager.

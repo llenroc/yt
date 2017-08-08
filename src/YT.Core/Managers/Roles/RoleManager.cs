@@ -3,9 +3,10 @@ using Abp.Authorization.Roles;
 using Abp.Domain.Uow;
 using Abp.Runtime.Caching;
 using Abp.Zero.Configuration;
+using YT.Authorization.Roles;
 using YT.Authorization.Users;
 
-namespace YT.Authorization.Roles
+namespace YT.Managers.Roles
 {
     /// <summary>
     /// Role manager.

@@ -1,8 +1,9 @@
 using System.Threading.Tasks;
 using Abp;
 using Abp.Authorization.Users;
+using YT.Authorization.Users;
 
-namespace YT.Authorization.Users
+namespace YT.Managers.Users
 {
     public interface IUserLinkManager
     {

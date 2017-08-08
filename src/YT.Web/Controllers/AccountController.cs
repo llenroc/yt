@@ -45,6 +45,8 @@ using YT.Configuration;
 using YT.Debugging;
 using YT.Managers.Impersonation;
 using YT.Managers.MultiTenancy;
+using YT.Managers.Roles;
+using YT.Managers.Users;
 using YT.MultiTenancy;
 using YT.Notifications;
 using YT.Security;

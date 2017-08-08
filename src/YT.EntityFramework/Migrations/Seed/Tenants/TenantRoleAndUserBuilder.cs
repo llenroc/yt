@@ -7,6 +7,7 @@ using YT.Authorization;
 using YT.Authorization.Roles;
 using YT.Authorization.Users;
 using YT.EntityFramework;
+using YT.Managers;
 
 namespace YT.Migrations.Seed.Tenants
 {

@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Abp.Domain.Policies;
 
-namespace YT.Authorization.Users
+namespace YT.Managers.Users
 {
     public interface IUserPolicy : IPolicy
     {

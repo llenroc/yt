@@ -1,6 +1,6 @@
 using Abp.Runtime.Caching;
 
-namespace YT.Authorization.Users
+namespace YT.Managers.Users
 {
     public static class SwitchToLinkedAccountCacheManagerExtensions
     {

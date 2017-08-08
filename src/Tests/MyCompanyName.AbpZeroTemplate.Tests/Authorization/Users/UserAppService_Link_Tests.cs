@@ -10,6 +10,7 @@ using YT.MultiTenancy;
 using Shouldly;
 using Xunit;
 using YT.Managers.MultiTenancy;
+using YT.Managers.Users;
 
 namespace YT.Tests.Authorization.Users
 {

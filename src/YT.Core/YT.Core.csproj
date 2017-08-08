@@ -130,7 +130,6 @@
     <Compile Include="Configuration\AppSettings.cs" />
     <Compile Include="Managers\AppAuthorizationProvider.cs" />
     <Compile Include="Managers\PermissionChecker.cs" />
-    <Compile Include="Managers\Roles\AppRoleConfig.cs" />
     <Compile Include="Managers\Roles\RoleManager.cs" />
     <Compile Include="Managers\Roles\RoleStore.cs" />
     <Compile Include="Managers\Users\IUserEmailer.cs" />

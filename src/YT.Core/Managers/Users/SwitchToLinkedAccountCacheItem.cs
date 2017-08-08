@@ -1,6 +1,6 @@
 using System;
 
-namespace YT.Authorization.Users
+namespace YT.Managers.Users
 {
     [Serializable]
     public class SwitchToLinkedAccountCacheItem

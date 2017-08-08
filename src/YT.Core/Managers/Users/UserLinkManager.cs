@@ -4,8 +4,9 @@ using Abp;
 using Abp.Authorization.Users;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
+using YT.Authorization.Users;
 
-namespace YT.Authorization.Users
+namespace YT.Managers.Users
 {
     public class UserLinkManager : YtDomainServiceBase, IUserLinkManager
     {

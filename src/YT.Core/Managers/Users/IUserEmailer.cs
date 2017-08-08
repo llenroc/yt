@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
+using YT.Authorization.Users;
 
-namespace YT.Authorization.Users
+namespace YT.Managers.Users
 {
     public interface IUserEmailer
     {

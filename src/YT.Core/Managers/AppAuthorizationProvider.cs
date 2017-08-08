@@ -5,9 +5,10 @@ using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Abp.Localization;
 using Abp.MultiTenancy;
+using YT.Authorization;
 using YT.Authorizations;
 
-namespace YT.Authorization
+namespace YT.Managers
 {
     /// <summary>
     /// Application's authorization provider.
