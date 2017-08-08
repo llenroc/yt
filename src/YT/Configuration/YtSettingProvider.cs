@@ -28,7 +28,10 @@ namespace YT.Configuration
             return new[]
                    {
                        //Host settings
-                        new SettingDefinition(YtSettings.General.MenuDefaultActive,ConfigurationManager.AppSettings[YtSettings.General.MenuDefaultActive] ?? "true"),
+                        new SettingDefinition(YtSettings.General.MenuDefaultActive,
+                        ConfigurationManager.AppSettings[YtSettings.General.MenuDefaultActive] ?? "true"),
+                          new SettingDefinition(YtSettings.General.PermissionDefaultActive,
+                        ConfigurationManager.AppSettings[YtSettings.General.PermissionDefaultActive] ?? "true"),
                   };
         }
     }

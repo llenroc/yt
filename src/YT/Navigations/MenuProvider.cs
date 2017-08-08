@@ -11,6 +11,6 @@ namespace YT.Navigations
   
     public abstract class MenuProvider : ITransientDependency
     {
-        public abstract IEnumerable<MenuDefinition> GetSettingDefinitions(MenuDefinitionProviderContext context);
+        public abstract IEnumerable<MenuDefinition> GetMenuDefinitions(MenuDefinitionProviderContext context);
     }
 }

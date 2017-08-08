@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Abp.Domain.Entities;
 
-namespace YT.Navigations
+namespace YT.Handlers
 {
    public interface ITreeLevel:IEntity
     {

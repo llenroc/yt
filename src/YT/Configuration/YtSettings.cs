@@ -8,6 +8,7 @@ namespace YT.Configuration
         public static class General
         {
             public const string MenuDefaultActive = "App.Menu.DefaultActive";
+            public const string PermissionDefaultActive = "App.Permission.DefaultActive";
             //no setting yet
         }
 

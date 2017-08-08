@@ -14,7 +14,7 @@ namespace YT.Navigations.MenuDefault
 
     public class AdminMenuProvider : BaseMenuProvider
     {
-        public override IEnumerable<MenuDefinition> GetSettingDefinitions(MenuDefinitionProviderContext context)
+        public override IEnumerable<MenuDefinition> GetMenuDefinitions(MenuDefinitionProviderContext context)
         {
             return new List<MenuDefinition>()
            {
@@ -32,5 +32,7 @@ namespace YT.Navigations.MenuDefault
                }
            };
         }
+
+     
     }
 }

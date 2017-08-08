@@ -434,10 +434,6 @@
     <Compile Include="Auth\AuthenticationManagerExtensions.cs" />
     <Compile Include="Auth\SignInManager.cs" />
     <Compile Include="Auth\TwitterEmailRetriever.cs" />
-    <Compile Include="Chat\SignalR\ChatHub.cs" />
-    <Compile Include="Chat\SignalR\SendChatMessageInput.cs" />
-    <Compile Include="Chat\SignalR\SendFriendshipRequestInput.cs" />
-    <Compile Include="Chat\SignalR\SignalRChatCommunicator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\Results\ChallengeResult.cs" />

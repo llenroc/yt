@@ -118,14 +118,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authorizations\IPermissionDefinitionManager.cs" />
+    <Compile Include="Authorizations\PermissionDefault\AdminPermissionProvider.cs" />
+    <Compile Include="Authorizations\PermissionDefinition.cs" />
+    <Compile Include="Authorizations\PermissionDefinitionManager.cs" />
+    <Compile Include="Authorizations\PermissionProvider.cs" />
+    <Compile Include="Authorizations\Startup\PermissionConfiguration.cs" />
+    <Compile Include="Authorizations\YtPermission.cs" />
     <Compile Include="Configuration\YtSettingProvider.cs" />
     <Compile Include="Configuration\YtSettings.cs" />
     <Compile Include="IModuleConfig.cs" />
     <Compile Include="ModuleConfig.cs" />
     <Compile Include="ModuleConfigurationExtensions.cs" />
-    <Compile Include="Navigations\ILevelEntityHandler.cs" />
+    <Compile Include="Handlers\ILevelEntityHandler.cs" />
     <Compile Include="Navigations\IMenuDefinitionManager.cs" />
-    <Compile Include="Navigations\ITreeLevel.cs" />
+    <Compile Include="Handlers\ITreeLevel.cs" />
     <Compile Include="Navigations\LevelEntityHandler.cs" />
     <Compile Include="Navigations\Menu.cs" />
     <Compile Include="Navigations\MenuDefault\AdminMenuProvider.cs" />

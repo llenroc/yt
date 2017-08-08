@@ -57,8 +57,8 @@ namespace YT.Web.Controllers
                 {
                     throw new UserFriendlyException("File_Invalid_Type_Error");
                 }
-
-                var logoObject = new BinaryObject(AbpSession.GetTenantId(), fileBytes);
+               
+                var logoObject = new BinaryObject( "");
                 await _binaryObjectManager.SaveAsync(logoObject);
 
                 var tenant = await _tenantManager.GetByIdAsync(AbpSession.GetTenantId());
@@ -92,7 +92,7 @@ namespace YT.Web.Controllers
 
                 var fileBytes = file.InputStream.GetAllBytes();
 
-                var cssFileObject = new BinaryObject(AbpSession.GetTenantId(), fileBytes);
+                var cssFileObject = new BinaryObject("");
                 await _binaryObjectManager.SaveAsync(cssFileObject);
 
                 var tenant = await _tenantManager.GetByIdAsync(AbpSession.GetTenantId());
@@ -103,76 +103,6 @@ namespace YT.Web.Controllers
             catch (UserFriendlyException ex)
             {
                 return Json(new AjaxResponse(new ErrorInfo(ex.Message)));
-            }
-        }
-
-        [AllowAnonymous]
-        public async Task<ActionResult> GetLogo()
-        {
-            var tenancyName = _tenancyNameFinder.GetCurrentTenancyNameOrNull();
-            Tenant tenant = null;
-
-            if (!string.IsNullOrEmpty(tenancyName))
-            {
-                using (CurrentUnitOfWork.SetTenantId(null))
-                {
-                    tenant = await _tenantManager.FindByTenancyNameAsync(tenancyName);
-                }
-            }
-            else if (AbpSession.TenantId.HasValue)
-            {
-                tenant = await _tenantManager.GetByIdAsync(AbpSession.TenantId.Value);
-            }
-
-            if (tenant == null || !tenant.HasLogo())
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-            }
-
-            using (CurrentUnitOfWork.SetTenantId(tenant.Id))
-            {
-                var logoObject = await _binaryObjectManager.GetOrNullAsync(tenant.LogoId.Value);
-                if (logoObject == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-                }
-
-                return File(logoObject.Bytes, tenant.LogoFileType);
-            }
-        }
-
-        [AllowAnonymous]
-        public async Task<ActionResult> GetCustomCss()
-        {
-            var tenancyName = _tenancyNameFinder.GetCurrentTenancyNameOrNull();
-            Tenant tenant = null;
-
-            if (!string.IsNullOrEmpty(tenancyName))
-            {
-                using (CurrentUnitOfWork.SetTenantId(null))
-                {
-                    tenant = await _tenantManager.FindByTenancyNameAsync(tenancyName);
-                }
-            }
-            else if (AbpSession.TenantId.HasValue)
-            {
-                tenant = await _tenantManager.GetByIdAsync(AbpSession.TenantId.Value);
-            }
-
-            if (tenant == null || !tenant.CustomCssId.HasValue)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-            }
-
-            using (CurrentUnitOfWork.SetTenantId(tenant.Id))
-            {
-                var cssFileObject = await _binaryObjectManager.GetOrNullAsync(tenant.CustomCssId.Value);
-                if (cssFileObject == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-                }
-
-                return File(cssFileObject.Bytes, MimeTypeNames.TextCss);
             }
         }
     }

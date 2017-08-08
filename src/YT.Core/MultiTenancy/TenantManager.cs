@@ -11,7 +11,6 @@ using Microsoft.AspNet.Identity;
 using YT.Authorization.Roles;
 using YT.Authorization.Users;
 using YT.Editions;
-using YT.MultiTenancy.Demo;
 using Abp.Extensions;
 using Abp.Notifications;
 using Abp.Runtime.Security;
@@ -28,7 +27,6 @@ namespace YT.MultiTenancy
         private readonly RoleManager _roleManager;
         private readonly UserManager _userManager;
         private readonly IUserEmailer _userEmailer;
-        private readonly TenantDemoDataBuilder _demoDataBuilder;
         private readonly INotificationSubscriptionManager _notificationSubscriptionManager;
         private readonly IAppNotifier _appNotifier;
         private readonly IAbpZeroDbMigrator _abpZeroDbMigrator;
@@ -40,7 +38,6 @@ namespace YT.MultiTenancy
             IUnitOfWorkManager unitOfWorkManager,
             RoleManager roleManager,
             IUserEmailer userEmailer,
-            TenantDemoDataBuilder demoDataBuilder,
             UserManager userManager,
             INotificationSubscriptionManager notificationSubscriptionManager,
             IAppNotifier appNotifier,
@@ -55,7 +52,6 @@ namespace YT.MultiTenancy
             _unitOfWorkManager = unitOfWorkManager;
             _roleManager = roleManager;
             _userEmailer = userEmailer;
-            _demoDataBuilder = demoDataBuilder;
             _userManager = userManager;
             _notificationSubscriptionManager = notificationSubscriptionManager;
             _appNotifier = appNotifier;
@@ -127,7 +123,6 @@ namespace YT.MultiTenancy
 
                     await _unitOfWorkManager.Current.SaveChangesAsync();
 
-                    await _demoDataBuilder.BuildForAsync(tenant);
 
                     newTenantId = tenant.Id;
                     newAdminId = adminUser.Id;

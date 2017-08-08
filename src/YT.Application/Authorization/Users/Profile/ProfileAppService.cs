@@ -116,8 +116,8 @@ namespace YT.Authorization.Users.Profile
             {
                 await _binaryObjectManager.DeleteAsync(user.ProfilePictureId.Value);
             }
-
-            var storedFile = new BinaryObject(AbpSession.TenantId, byteArray);
+          
+            var storedFile = new BinaryObject(tempProfilePicturePath);
             await _binaryObjectManager.SaveAsync(storedFile);
 
             user.ProfilePictureId = storedFile.Id;

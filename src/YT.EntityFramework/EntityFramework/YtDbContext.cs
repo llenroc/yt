@@ -3,8 +3,7 @@ using System.Data.Entity;
 using Abp.Zero.EntityFramework;
 using YT.Authorization.Roles;
 using YT.Authorization.Users;
-using YT.Chat;
-using YT.Friendships;
+using YT.Authorizations;
 using YT.MultiTenancy;
 using YT.Navigations;
 using YT.Storage;
@@ -25,15 +24,16 @@ namespace YT.EntityFramework
 
         public virtual IDbSet<BinaryObject> BinaryObjects { get; set; }
 
-        public virtual IDbSet<Friendship> Friendships { get; set; }
-
-        public virtual IDbSet<ChatMessage> ChatMessages { get; set; }
+  
 
             /// <summary>
             /// ≤Àµ•≈‰÷√
             /// </summary>
             public  virtual  IDbSet<Menu> Menus { get; set; }
-
+        /// <summary>
+        /// »®œﬁ≈‰÷√
+        /// </summary>
+        public  virtual  IDbSet<YtPermission> YtPermissions { get; set; }
         public YtDbContext()
             : base("Default")
         {

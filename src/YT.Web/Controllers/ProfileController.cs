@@ -15,7 +15,6 @@ using Abp.UI;
 using Abp.Web.Models;
 using Abp.Web.Mvc.Authorization;
 using YT.Authorization.Users;
-using YT.Friendships;
 using YT.IO;
 using YT.Net.MimeTypes;
 using YT.Storage;
@@ -28,22 +27,19 @@ namespace YT.Web.Controllers
         private readonly UserManager _userManager;
         private readonly IBinaryObjectManager _binaryObjectManager;
         private readonly IAppFolders _appFolders;
-        private readonly IFriendshipManager _friendshipManager;
 
         public ProfileController(
             UserManager userManager,
             IBinaryObjectManager binaryObjectManager,
-            IAppFolders appFolders,
-            IFriendshipManager friendshipManager)
+            IAppFolders appFolders)
         {
             _userManager = userManager;
             _binaryObjectManager = binaryObjectManager;
             _appFolders = appFolders;
-            _friendshipManager = friendshipManager;
         }
 
         [DisableAuditing]
-        public async Task<FileResult> GetProfilePicture()
+        public async Task<JsonResult> GetProfilePicture()
         {
             var user = await _userManager.GetUserByIdAsync(AbpSession.GetUserId());
             if (user.ProfilePictureId == null)
@@ -55,7 +51,7 @@ namespace YT.Web.Controllers
         }
 
         [DisableAuditing]
-        public async Task<FileResult> GetProfilePictureById(string id = "")
+        public async Task<JsonResult> GetProfilePictureById(string id = "")
         {
             if (id.IsNullOrEmpty())
             {
@@ -67,13 +63,13 @@ namespace YT.Web.Controllers
 
         [DisableAuditing]
         [UnitOfWork]
-        public virtual async Task<FileResult> GetFriendProfilePictureById(long userId, int? tenantId, string id = "")
+        public virtual async Task<JsonResult> GetFriendProfilePictureById(long userId, int? tenantId, string id = "")
         {
-            if (id.IsNullOrEmpty() ||
-                _friendshipManager.GetFriendshipOrNull(AbpSession.ToUserIdentifier(), new UserIdentifier(tenantId, userId)) == null)
-            {
-                return GetDefaultProfilePicture();
-            }
+            //if (id.IsNullOrEmpty() ||
+            //    _friendshipManager.GetFriendshipOrNull(AbpSession.ToUserIdentifier(), new UserIdentifier(tenantId, userId)) == null)
+            //{
+            //    return GetDefaultProfilePicture();
+            //}
 
             using (CurrentUnitOfWork.SetTenantId(tenantId))
             {
@@ -108,9 +104,10 @@ namespace YT.Web.Controllers
                 {
                     await _binaryObjectManager.DeleteAsync(user.ProfilePictureId.Value);
                 }
-
+                var path = "";
+                 file.SaveAs(path);
                 //Save new picture
-                var storedFile = new BinaryObject(AbpSession.TenantId, file.InputStream.GetAllBytes());
+                var storedFile = new BinaryObject(path);
                 await _binaryObjectManager.SaveAsync(storedFile);
 
                 //Update new picture on the user
@@ -175,12 +172,12 @@ namespace YT.Web.Controllers
             }
         }
 
-        private FileResult GetDefaultProfilePicture()
+        private JsonResult GetDefaultProfilePicture()
         {
-            return File(Server.MapPath("~/Common/Images/default-profile-picture.png"), MimeTypeNames.ImagePng);
+            return Json(Server.MapPath("~/Common/Images/default-profile-picture.png"), MimeTypeNames.ImagePng);
         }
 
-        private async Task<FileResult> GetProfilePictureById(Guid profilePictureId)
+        private async Task<JsonResult> GetProfilePictureById(Guid profilePictureId)
         {
             var file = await _binaryObjectManager.GetOrNullAsync(profilePictureId);
             if (file == null)
@@ -188,7 +185,7 @@ namespace YT.Web.Controllers
                 return GetDefaultProfilePicture();
             }
 
-            return File(file.Bytes, MimeTypeNames.ImageJpeg);
+            return Json(file.Url, MimeTypeNames.ImageJpeg);
         }
     }
 }

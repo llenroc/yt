@@ -96,6 +96,11 @@ namespace YT.Authorization.Roles
 
             await UpdateGrantedPermissionsAsync(role, input.GrantedPermissionNames);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
 
         [AbpAuthorize(AppPermissions.Pages_Administration_Roles_Create)]
         protected virtual async Task CreateRoleAsync(CreateOrUpdateRoleInput input)

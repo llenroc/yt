@@ -14,7 +14,7 @@ namespace YT.Authorization.Permissions
         /// Gets all permissions by names.
         /// Throws <see cref="AbpValidationException"/> if can not find any of the permission names.
         /// </summary>
-        public static IEnumerable<Abp.Authorization.Permission> GetPermissionsFromNamesByValidating(this IPermissionManager permissionManager, IEnumerable<string> permissionNames)
+        public static IEnumerable<Permission> GetPermissionsFromNamesByValidating(this IPermissionManager permissionManager, IEnumerable<string> permissionNames)
         {
             var permissions = new List<Abp.Authorization.Permission>();
             var undefinedPermissionNames = new List<string>();

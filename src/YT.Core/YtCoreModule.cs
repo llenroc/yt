@@ -1,25 +1,19 @@
 using System;
 using System.Reflection;
 using Abp.AutoMapper;
-using Abp.Configuration.Startup;
 using Abp.Dependency;
 using Abp.Localization.Dictionaries;
 using Abp.Localization.Dictionaries.Xml;
 using Abp.Modules;
 using Abp.Net.Mail;
-using Abp.Runtime.Session;
 using Abp.Zero;
 using Abp.Zero.Configuration;
 using Abp.Zero.Ldap;
-using Castle.MicroKernel.Registration;
 using YT.Authorization.Roles;
 using YT.Authorization.Users;
-using YT.Chat;
 using YT.Configuration;
 using YT.Debugging;
 using YT.Features;
-using YT.Friendships;
-using YT.Friendships.Cache;
 using YT.MultiTenancy;
 using YT.Notifications;
 
@@ -34,7 +28,7 @@ namespace YT
         
         public override void PreInitialize()
         {
-            IocManager.RegisterIfNot<IChatCommunicator, NullChatCommunicator>();
+          //  IocManager.RegisterIfNot<IChatCommunicator, NullChatCommunicator>();
             if (DebugHelper.IsDebug)
             {
                 //Disabling email sending in debug mode
@@ -45,20 +39,20 @@ namespace YT
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
-            //Adding feature providers
+            //添加版本默认数据
             Configuration.Features.Providers.Add<AppFeatureProvider>();
 
-            //Adding setting providers
+            //添加设置项 默认属性
             Configuration.Settings.Providers.Add<AppSettingProvider>();
 
-            //Adding notification providers
+            //添加通知消息 默认
             Configuration.Notifications.Providers.Add<AppNotificationProvider>();
            
-            //Enable this line to create a multi-tenant application.
+            //是否开启多租户信息
             Configuration.MultiTenancy.IsEnabled = YtConsts.MultiTenancyEnabled;
-
             //Enable LDAP authentication (It can be enabled only if MultiTenancy is disabled!)
-            //Configuration.Modules.ZeroLdap().Enable(typeof(AppLdapAuthenticationSource));
+          //  Configuration.Modules.ZeroLdap().Enable(typeof(AppLdapAuthenticationSource));
+          //当前用户未登陆 是否记录日志 默认false
             Configuration.Auditing.IsEnabledForAnonymousUsers = true;
             //Declare entity types
             Configuration.Modules.Zero().EntityTypes.Tenant = typeof(Tenant);
@@ -75,11 +69,11 @@ namespace YT
                         )
                     )
                 );
-
-            Configuration.Caching.Configure(FriendCacheItem.CacheName, cache =>
-            {
-                cache.DefaultSlidingExpireTime = TimeSpan.FromMinutes(30);
-            });
+            ////配置缓存周期
+            //Configuration.Caching.Configure(FriendCacheItem.CacheName, cache =>
+            //{
+            //    cache.DefaultSlidingExpireTime = TimeSpan.FromMinutes(30);
+            //});
             //Configure roles
             AppRoleConfig.Configure(Configuration.Modules.Zero().RoleManagement);
         
@@ -88,7 +82,7 @@ namespace YT
         public override void PostInitialize()
         {
          
-            IocManager.Resolve<ChatUserStateWatcher>().Initialize();
+          //  IocManager.Resolve<ChatUserStateWatcher>().Initialize();
           //  IocManager.Resolve<IMenuDefinitionManager>().Initialize();
         }
     }

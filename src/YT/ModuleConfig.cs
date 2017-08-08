@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Abp.Configuration.Startup;
 using Abp.Notifications;
+using YT.Authorizations.Startup;
 using YT.Navigations.Startup;
 
 namespace YT
@@ -17,8 +18,8 @@ namespace YT
           IMenuConfiguration menuConfiguration,
         //  IRoleConfiguration roleConfiguration,
        //   IUserConfiguration userConfiguration,
-          INotificationConfiguration notificationConfiguration
-         // IPostConfiguration postConfiguration
+          INotificationConfiguration notificationConfiguration,
+             IPermissionConfiguration permissions
             )
         {
             Settings = settingsConfiguration;
@@ -28,14 +29,14 @@ namespace YT
          //   Roles = roleConfiguration;
          //   Users = userConfiguration;
             Notifications = notificationConfiguration;
-         //   Posts = postConfiguration;
+            Permissions = permissions;
         }
 
         public ISettingsConfiguration Settings { get; }
 
         public IMenuConfiguration Menus { get; }
 
-     //   public IUserConfiguration Users { get; }
+        public IPermissionConfiguration Permissions { get; }
 
      //   public IDictionaryConfiguration Dictionaries { get; }
 

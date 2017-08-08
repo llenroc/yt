@@ -5,7 +5,11 @@ using Abp.Configuration.Startup;
 using Abp.Modules;
 using Abp.Runtime.Caching.Redis;
 using Castle.MicroKernel.Registration;
+using YT.Authorizations;
+using YT.Authorizations.PermissionDefault;
+using YT.Authorizations.Startup;
 using YT.Configuration;
+using YT.Handlers;
 using YT.Navigations;
 using YT.Navigations.MenuDefault;
 using YT.Navigations.Startup;
@@ -22,7 +26,7 @@ namespace YT
             IocManager.Register<IMenuConfiguration, MenuConfiguration>();
           //  IocManager.Register<IRoleConfiguration, RoleConfiguration>();
           //  IocManager.Register<IUserConfiguration, UserConfiguration>();
-          //  IocManager.Register<INotificationConfiguration, NotificationConfiguration>();
+            IocManager.Register<IPermissionConfiguration, PermissionConfiguration>();
             IocManager.Register<IModuleConfig, ModuleConfig>();
           //  IocManager.Register<IPostConfiguration, PostConfiguration>();
         }
@@ -30,10 +34,13 @@ namespace YT
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
-            Configuration.Modules.MyModule().Settings.Providers.Add(typeof(YtSettingProvider));
+            //添加设置项 默认属性
+            Configuration.Settings.Providers.Add<YtSettingProvider>();
+          //  Configuration.Modules.MyModule().Settings.Providers.Add(typeof(YtSettingProvider));
             Configuration.Modules.MyModule().Menus.Providers.Add(typeof(AdminMenuProvider));
-         //   Configuration.Modules.MyModule().Roles.Providers.Add(typeof(YTRoleProvider));
-          //  Configuration.Modules.MyModule().Users.Providers.Add(typeof(YTUserProvider));
+            Configuration.Modules.MyModule().Permissions.Providers.Add(typeof(AdminPermissionProvider));
+            //   Configuration.Modules.MyModule().Roles.Providers.Add(typeof(YTRoleProvider));
+            //  Configuration.Modules.MyModule().Users.Providers.Add(typeof(YTUserProvider));
 
             IocManager.IocContainer.Register(Component.For(typeof(ILevelEntityHandler<>))
                 .ImplementedBy(typeof(LevelEntityHandler<>)));
@@ -44,6 +51,7 @@ namespace YT
         public override void PostInitialize()
         {
            IocManager.Resolve<IMenuDefinitionManager>().Initialize();
+           IocManager.Resolve<IPermissionDefinitionManager>().Initialize();
         }
 
     }

@@ -6,24 +6,33 @@ using Abp.Domain.Entities;
 
 namespace YT.Storage
 {
-    [Table("AppBinaryObjects")]
-    public class BinaryObject : Entity<Guid>, IMayHaveTenant
+    /// <summary>
+    /// 文件存储
+    /// </summary>
+    [Table("yt_objectstorage")]
+    public sealed class BinaryObject : Entity<Guid>
     {
-        public virtual int? TenantId { get; set; }
-
+        /// <summary>
+        /// 文件路径
+        /// </summary>
         [Required]
-        public virtual byte[] Bytes { get; set; }
+        public string Url { get; set; }
 
         public BinaryObject()
         {
             Id = SequentialGuidGenerator.Instance.Create();
         }
 
-        public BinaryObject(int? tenantId, byte[] bytes)
+        public BinaryObject(Guid id, string url)
+        {
+            Id = id;
+            Url = url;
+        }
+
+        public BinaryObject(string url)
             : this()
         {
-            TenantId = tenantId;
-            Bytes = bytes;
+            Url = url;
         }
     }
 }

@@ -8,6 +8,7 @@ using Abp.Configuration;
 using Abp.Dependency;
 using Abp.Domain.Repositories;
 using YT.Configuration;
+using YT.Handlers;
 using YT.Navigations.Startup;
 
 namespace YT.Navigations
@@ -41,7 +42,7 @@ namespace YT.Navigations
             {
                 using (var provider = CreateProvider<MenuProvider>(providerType))
                 {
-                    List<MenuDefinition> menus = provider.Object.GetSettingDefinitions(context).ToList();
+                    List<MenuDefinition> menus = provider.Object.GetMenuDefinitions(context).ToList();
                     List<MenuDefinition> newList = new List<MenuDefinition>();
                     foreach (MenuDefinition definition in menus)
                     {
