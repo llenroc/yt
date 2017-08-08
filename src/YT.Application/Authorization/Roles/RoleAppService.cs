@@ -18,7 +18,6 @@ namespace YT.Authorization.Roles
     /// <summary>
     /// Application service that is used by 'role management' page.
     /// </summary>
-    [AbpAuthorize(AppPermissions.Pages_Administration_Roles)]
     public class RoleAppService : YtAppServiceBase, IRoleAppService
     {
         private readonly RoleManager _roleManager;
@@ -41,7 +40,6 @@ namespace YT.Authorization.Roles
             return new ListResultDto<RoleListDto>(roles.MapTo<List<RoleListDto>>());
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Administration_Roles_Create, AppPermissions.Pages_Administration_Roles_Edit)]
         public async Task<GetRoleForEditOutput> GetRoleForEdit(NullableIdDto input)
         {
             var permissions = PermissionManager.GetAllPermissions();
@@ -79,14 +77,12 @@ namespace YT.Authorization.Roles
             }
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Administration_Roles_Delete)]
         public async Task DeleteRole(EntityDto input)
         {
             var role = await _roleManager.GetRoleByIdAsync(input.Id);
             CheckErrors(await _roleManager.DeleteAsync(role));
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Administration_Roles_Edit)]
         protected virtual async Task UpdateRoleAsync(CreateOrUpdateRoleInput input)
         {
             Debug.Assert(input.Role.Id != null, "input.Role.Id should be set.");
@@ -103,7 +99,6 @@ namespace YT.Authorization.Roles
         /// <param name="input"></param>
         /// <returns></returns>
 
-        [AbpAuthorize(AppPermissions.Pages_Administration_Roles_Create)]
         protected virtual async Task CreateRoleAsync(CreateOrUpdateRoleInput input)
         {
             var role = new Role(AbpSession.TenantId, input.Role.DisplayName) { IsDefault = input.Role.IsDefault };

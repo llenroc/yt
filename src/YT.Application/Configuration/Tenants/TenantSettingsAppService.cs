@@ -20,7 +20,6 @@ using Newtonsoft.Json;
 
 namespace YT.Configuration.Tenants
 {
-    [AbpAuthorize(AppPermissions.Pages_Administration_Tenant_Settings)]
     public class TenantSettingsAppService : YtAppServiceBase, ITenantSettingsAppService
     {
         private readonly IMultiTenancyConfig _multiTenancyConfig;

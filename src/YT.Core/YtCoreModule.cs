@@ -9,12 +9,12 @@ using Abp.Net.Mail;
 using Abp.Zero;
 using Abp.Zero.Configuration;
 using Abp.Zero.Ldap;
-using YT.Authorization.Roles;
-using YT.Authorization.Users;
 using YT.Configuration;
 using YT.Debugging;
 using YT.Features;
 using YT.Managers.MultiTenancy;
+using YT.Managers.Roles;
+using YT.Managers.Users;
 using YT.MultiTenancy;
 using YT.Notifications;
 

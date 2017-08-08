@@ -15,11 +15,11 @@ using YT.Auditing.Exporting;
 using YT.Authorization;
 using YT.Authorization.Users;
 using YT.Dto;
+using YT.Managers.Users;
 
 namespace YT.Auditing
 {
     [DisableAuditing]
-    [AbpAuthorize(AppPermissions.Pages_Administration_AuditLogs)]
     public class AuditLogAppService : YtAppServiceBase, IAuditLogAppService
     {
         private readonly IRepository<AuditLog, long> _auditLogRepository;

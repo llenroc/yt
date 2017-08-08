@@ -3,6 +3,7 @@ using Abp.Application.Services.Dto;
 using Abp.MultiTenancy;
 using YT.Authorization.Users;
 using YT.Managers.MultiTenancy;
+using YT.Managers.Users;
 
 namespace YT.MultiTenancy.Dto
 {

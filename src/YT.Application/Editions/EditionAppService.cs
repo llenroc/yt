@@ -13,7 +13,6 @@ using YT.Editions.Dto;
 
 namespace YT.Editions
 {
-    [AbpAuthorize(AppPermissions.Pages_Editions)]
     public class EditionAppService : YtAppServiceBase, IEditionAppService
     {
         private readonly EditionManager _editionManager;
@@ -31,7 +30,6 @@ namespace YT.Editions
                 );
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Editions_Create, AppPermissions.Pages_Editions_Edit)]
         public async Task<GetEditionForEditOutput> GetEditionForEdit(NullableIdDto input)
         {
             var features = FeatureManager.GetAll();
@@ -59,7 +57,6 @@ namespace YT.Editions
             };
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Editions_Create, AppPermissions.Pages_Editions_Edit)]
         public async Task CreateOrUpdateEdition(CreateOrUpdateEditionDto input)
         {
             if (!input.Edition.Id.HasValue)
@@ -72,7 +69,6 @@ namespace YT.Editions
             }
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Editions_Delete)]
         public async Task DeleteEdition(EntityDto input)
         {
             var edition = await _editionManager.GetByIdAsync(input.Id);
@@ -103,7 +99,6 @@ namespace YT.Editions
             return editionItems;
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Editions_Create)]
         protected virtual async Task CreateEditionAsync(CreateOrUpdateEditionDto input)
         {
             var edition = new Edition(input.Edition.DisplayName);
@@ -114,7 +109,6 @@ namespace YT.Editions
             await SetFeatureValues(edition, input.FeatureValues);
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Editions_Edit)]
         protected virtual async Task UpdateEditionAsync(CreateOrUpdateEditionDto input)
         {
             Debug.Assert(input.Edition.Id != null, "input.Edition.Id should be set.");

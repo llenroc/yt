@@ -140,7 +140,6 @@
     <Compile Include="Configuration\YtSettingProvider.cs" />
     <Compile Include="Configuration\YtSettings.cs" />
     <Compile Include="IModuleConfig.cs" />
-    <Compile Include="Managers\AppPermissions.cs" />
     <Compile Include="Managers\Impersonation\ImpersonationCacheItem.cs" />
     <Compile Include="Managers\Impersonation\ImpersonationCacheManagerExtensions.cs" />
     <Compile Include="Managers\MultiTenancy\Tenant.cs" />

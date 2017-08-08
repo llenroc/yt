@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Abp.Application.Services.Dto;
 using YT.Authorization.Users;
+using YT.Managers.Users;
 
 namespace YT.Configuration.Host.Dto
 {

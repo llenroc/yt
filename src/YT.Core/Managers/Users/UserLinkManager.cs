@@ -4,7 +4,6 @@ using Abp;
 using Abp.Authorization.Users;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
-using YT.Authorization.Users;
 
 namespace YT.Managers.Users
 {

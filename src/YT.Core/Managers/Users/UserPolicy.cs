@@ -3,7 +3,6 @@ using Abp.Application.Features;
 using Abp.Domain.Repositories;
 using Abp.Extensions;
 using Abp.UI;
-using YT.Authorization.Users;
 using YT.Features;
 
 namespace YT.Managers.Users

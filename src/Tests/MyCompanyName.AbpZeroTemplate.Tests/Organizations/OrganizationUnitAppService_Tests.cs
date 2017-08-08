@@ -9,6 +9,7 @@ using YT.Organizations;
 using YT.Organizations.Dto;
 using Shouldly;
 using Xunit;
+using YT.Managers.Users;
 
 namespace YT.Tests.Organizations
 {

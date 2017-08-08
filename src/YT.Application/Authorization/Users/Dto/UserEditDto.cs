@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using Abp.Auditing;
 using Abp.Authorization.Users;
 using Abp.Domain.Entities;
+using YT.Managers.Users;
 
 namespace YT.Authorization.Users.Dto
 {

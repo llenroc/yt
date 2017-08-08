@@ -3,8 +3,8 @@ using Abp.Authorization.Roles;
 using Abp.Domain.Uow;
 using Abp.Runtime.Caching;
 using Abp.Zero.Configuration;
-using YT.Authorization.Roles;
-using YT.Authorization.Users;
+using YT.Managers.Roles;
+using YT.Managers.Users;
 
 namespace YT.Managers.Roles
 {

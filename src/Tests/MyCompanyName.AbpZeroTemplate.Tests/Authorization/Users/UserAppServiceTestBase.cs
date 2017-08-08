@@ -1,4 +1,5 @@
 using YT.Authorization.Users;
+using YT.Managers.Users;
 
 namespace YT.Tests.Authorization.Users
 {

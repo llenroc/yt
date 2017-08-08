@@ -1,13 +1,12 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Authorization.Users;
 using Abp.Extensions;
 using Microsoft.AspNet.Identity;
 
-namespace YT.Authorization.Users
+namespace YT.Managers.Users
 {
-    /// <summary>
-    /// Represents a user in the system.
-    /// </summary>
+   [Table("yt_users")]
     public sealed class User : AbpUser<User>
     {
         public const int MinPlainPasswordLength = 6;

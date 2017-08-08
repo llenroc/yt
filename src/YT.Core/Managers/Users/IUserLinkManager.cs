@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Abp;
 using Abp.Authorization.Users;
-using YT.Authorization.Users;
+using YT.Managers.Users;
 
 namespace YT.Managers.Users
 {

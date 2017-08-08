@@ -7,7 +7,6 @@ using Abp.Domain.Uow;
 using Abp.Extensions;
 using Abp.Net.Mail;
 using Abp.Runtime.Security;
-using YT.Authorization.Users;
 using YT.Emailing;
 using YT.Managers.MultiTenancy;
 using YT.Web;

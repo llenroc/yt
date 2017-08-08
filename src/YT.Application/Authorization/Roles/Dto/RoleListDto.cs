@@ -2,6 +2,7 @@ using System;
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Abp.Domain.Entities.Auditing;
+using YT.Managers.Roles;
 
 namespace YT.Authorization.Roles.Dto
 {

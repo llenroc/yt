@@ -8,8 +8,6 @@ using Abp.Domain.Uow;
 using Abp.IdentityFramework;
 using Abp.MultiTenancy;
 using Microsoft.AspNet.Identity;
-using YT.Authorization.Roles;
-using YT.Authorization.Users;
 using Abp.Extensions;
 using Abp.Notifications;
 using Abp.Runtime.Security;

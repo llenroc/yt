@@ -14,7 +14,6 @@ using System.Linq.Dynamic;
 
 namespace YT.Organizations
 {
-    [AbpAuthorize(AppPermissions.Pages_Administration_OrganizationUnits)]
     public class OrganizationUnitAppService : YtAppServiceBase, IOrganizationUnitAppService
     {
         private readonly OrganizationUnitManager _organizationUnitManager;
@@ -70,7 +69,6 @@ namespace YT.Organizations
                 }).ToList());
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Administration_OrganizationUnits_ManageOrganizationTree)]
         public async Task<OrganizationUnitDto> CreateOrganizationUnit(CreateOrganizationUnitInput input)
         {
             var organizationUnit = new OrganizationUnit(AbpSession.TenantId, input.DisplayName, input.ParentId);
@@ -81,7 +79,6 @@ namespace YT.Organizations
             return organizationUnit.MapTo<OrganizationUnitDto>();
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Administration_OrganizationUnits_ManageOrganizationTree)]
         public async Task<OrganizationUnitDto> UpdateOrganizationUnit(UpdateOrganizationUnitInput input)
         {
             var organizationUnit = await _organizationUnitRepository.GetAsync(input.Id);
@@ -93,7 +90,6 @@ namespace YT.Organizations
             return await CreateOrganizationUnitDto(organizationUnit);
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Administration_OrganizationUnits_ManageOrganizationTree)]
         public async Task<OrganizationUnitDto> MoveOrganizationUnit(MoveOrganizationUnitInput input)
         {
             await _organizationUnitManager.MoveAsync(input.Id, input.NewParentId);
@@ -103,25 +99,21 @@ namespace YT.Organizations
                 );
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Administration_OrganizationUnits_ManageOrganizationTree)]
         public async Task DeleteOrganizationUnit(EntityDto<long> input)
         {
             await _organizationUnitManager.DeleteAsync(input.Id);
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Administration_OrganizationUnits_ManageMembers)]
         public async Task AddUserToOrganizationUnit(UserToOrganizationUnitInput input)
         {
             await UserManager.AddToOrganizationUnitAsync(input.UserId, input.OrganizationUnitId);
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Administration_OrganizationUnits_ManageMembers)]
         public async Task RemoveUserFromOrganizationUnit(UserToOrganizationUnitInput input)
         {
             await UserManager.RemoveFromOrganizationUnitAsync(input.UserId, input.OrganizationUnitId);
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Administration_OrganizationUnits_ManageMembers)]
         public async Task<bool> IsInOrganizationUnit(UserToOrganizationUnitInput input)
         {
             return await UserManager.IsInOrganizationUnitAsync(input.UserId, input.OrganizationUnitId);

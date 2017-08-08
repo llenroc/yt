@@ -1,7 +1,6 @@
 using Abp.Authorization;
 using Microsoft.AspNet.Identity;
-using YT.Authorization.Roles;
-using YT.Authorization.Users;
+using YT.Managers.Roles;
 using YT.Managers.Users;
 
 namespace YT.Managers

@@ -55,26 +55,6 @@ namespace YT.Tests.Authorization.Users
             }
         }
 
-        [Fact]
-        public async Task Should_Reset_Permissions()
-        {
-            //Arrange
-            var admin = await GetUserByUserNameAsync(User.AdminUserName);
-            UsingDbContext(
-                context => context.UserPermissions.Add(
-                    new UserPermissionSetting
-                    {
-                        TenantId = AbpSession.TenantId,
-                        UserId = admin.Id,
-                        Name = AppPermissions.Pages_Administration_Roles,
-                        IsGranted = false
-                    }));
-
-            //Act
-            await UserAppService.ResetUserSpecificPermissions(new EntityDto<long>(admin.Id));
-
-            //Assert
-            (await UsingDbContextAsync(context => context.UserPermissions.CountAsync(p => p.UserId == admin.Id))).ShouldBe(0);
-        }
+      
     }
 }

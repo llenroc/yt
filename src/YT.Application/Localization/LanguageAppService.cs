@@ -17,7 +17,6 @@ using YT.Localization.Dto;
 
 namespace YT.Localization
 {
-    [AbpAuthorize(AppPermissions.Pages_Administration_Languages)]
     public class LanguageAppService : YtAppServiceBase, ILanguageAppService
     {
         private readonly IApplicationLanguageManager _applicationLanguageManager;
@@ -45,7 +44,6 @@ namespace YT.Localization
                 );
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Administration_Languages_Create, AppPermissions.Pages_Administration_Languages_Edit)]
         public async Task<GetLanguageForEditOutput> GetLanguageForEdit(NullableIdDto input)
         {
             ApplicationLanguage language = null;
@@ -104,7 +102,6 @@ namespace YT.Localization
                 );
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Administration_Languages_ChangeTexts)]
         public async Task<PagedResultDto<LanguageTextListDto>> GetLanguageTexts(GetLanguageTextsInput input)
         {
             /* Note: This method is used by SPA without paging, MPA with paging.
@@ -187,7 +184,6 @@ namespace YT.Localization
             await _applicationLanguageTextManager.UpdateStringAsync(AbpSession.TenantId, source.Name, culture, input.Key, input.Value);
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Administration_Languages_Create)]
         protected virtual async Task CreateLanguageAsync(CreateOrUpdateLanguageInput input)
         {
             var culture = GetCultureInfoByChecking(input.Language.Name);
@@ -204,7 +200,6 @@ namespace YT.Localization
                 );
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Administration_Languages_Edit)]
         protected virtual async Task UpdateLanguageAsync(CreateOrUpdateLanguageInput input)
         {
             Debug.Assert(input.Language.Id != null, "input.Language.Id != null");

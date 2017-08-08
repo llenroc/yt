@@ -8,7 +8,6 @@ using YT.Caching.Dto;
 
 namespace YT.Caching
 {
-    [AbpAuthorize(AppPermissions.Pages_Administration_Host_Maintenance)]
     public class CachingAppService : YtAppServiceBase, ICachingAppService
     {
         private readonly ICacheManager _cacheManager;

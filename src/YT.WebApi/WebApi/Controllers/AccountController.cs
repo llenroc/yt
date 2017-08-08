@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using YT.Authorization;
 using YT.Authorization.Users;
 using YT.Managers.MultiTenancy;
+using YT.Managers.Users;
 using YT.MultiTenancy;
 using YT.WebApi.Models;
 

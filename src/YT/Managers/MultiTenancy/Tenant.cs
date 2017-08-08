@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using Abp.MultiTenancy;
-using YT.Authorization.Users;
+using YT.Managers.Users;
 
 namespace YT.Managers.MultiTenancy
 {

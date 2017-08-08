@@ -6,7 +6,6 @@ using YT.Tenants.Dashboard.Dto;
 
 namespace YT.Tenants.Dashboard
 {
-    [AbpAuthorize(AppPermissions.Pages_Tenant_Dashboard)]
     public class TenantDashboardAppService : YtAppServiceBase, ITenantDashboardAppService
     {
         public GetMemberActivityOutput GetMemberActivity()

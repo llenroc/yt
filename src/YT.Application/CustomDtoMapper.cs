@@ -1,6 +1,7 @@
 using AutoMapper;
 using YT.Authorization.Users;
 using YT.Authorization.Users.Dto;
+using YT.Managers.Users;
 
 namespace YT
 {

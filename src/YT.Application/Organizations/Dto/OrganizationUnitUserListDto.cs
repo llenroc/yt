@@ -2,6 +2,7 @@ using System;
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using YT.Authorization.Users;
+using YT.Managers.Users;
 
 namespace YT.Organizations.Dto
 {

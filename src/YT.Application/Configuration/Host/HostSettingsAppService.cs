@@ -17,7 +17,6 @@ using Newtonsoft.Json;
 
 namespace YT.Configuration.Host
 {
-    [AbpAuthorize(AppPermissions.Pages_Administration_Host_Settings)]
     public class HostSettingsAppService : YtAppServiceBase, IHostSettingsAppService
     {
         private readonly IEmailSender _emailSender;

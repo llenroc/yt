@@ -14,11 +14,11 @@ using Abp.Runtime.Security;
 using YT.Authorization;
 using YT.Authorization.Users;
 using YT.Editions.Dto;
+using YT.Managers.Users;
 using YT.MultiTenancy.Dto;
 
 namespace YT.MultiTenancy
 {
-    [AbpAuthorize(AppPermissions.Pages_Tenants)]
     public class TenantAppService : YtAppServiceBase, ITenantAppService
     {
         public async Task<PagedResultDto<TenantListDto>> GetTenants(GetTenantsInput input)
@@ -41,7 +41,6 @@ namespace YT.MultiTenancy
                 );
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Tenants_Create)]
         [UnitOfWork(IsDisabled = true)]
         public async Task CreateTenant(CreateTenantInput input)
         {
@@ -56,7 +55,6 @@ namespace YT.MultiTenancy
                 input.SendActivationEmail);
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Tenants_Edit)]
         public async Task<TenantEditDto> GetTenantForEdit(EntityDto input)
         {
             var tenantEditDto = (await TenantManager.GetByIdAsync(input.Id)).MapTo<TenantEditDto>();
@@ -64,7 +62,6 @@ namespace YT.MultiTenancy
             return tenantEditDto;
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Tenants_Edit)]
         public async Task UpdateTenant(TenantEditDto input)
         {
             input.ConnectionString = SimpleStringCipher.Instance.Encrypt(input.ConnectionString);
@@ -73,14 +70,12 @@ namespace YT.MultiTenancy
             await TenantManager.UpdateAsync(tenant);
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Tenants_Delete)]
         public async Task DeleteTenant(EntityDto input)
         {
             var tenant = await TenantManager.GetByIdAsync(input.Id);
             await TenantManager.DeleteAsync(tenant);
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Tenants_ChangeFeatures)]
         public async Task<GetTenantFeaturesForEditOutput> GetTenantFeaturesForEdit(EntityDto input)
         {
             var features = FeatureManager.GetAll();
@@ -93,13 +88,11 @@ namespace YT.MultiTenancy
             };
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Tenants_ChangeFeatures)]
         public async Task UpdateTenantFeatures(UpdateTenantFeaturesInput input)
         {
             await TenantManager.SetFeatureValuesAsync(input.Id, input.FeatureValues.Select(fv => new NameValue(fv.Name, fv.Value)).ToArray());
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Tenants_ChangeFeatures)]
         public async Task ResetTenantSpecificFeatures(EntityDto input)
         {
             await TenantManager.ResetAllFeaturesAsync(input.Id);

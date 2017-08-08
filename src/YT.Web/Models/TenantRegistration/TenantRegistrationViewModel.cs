@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using YT.Authorization.Users;
 using YT.Managers.MultiTenancy;
+using YT.Managers.Users;
 using YT.MultiTenancy;
 
 namespace YT.Web.Models.TenantRegistration

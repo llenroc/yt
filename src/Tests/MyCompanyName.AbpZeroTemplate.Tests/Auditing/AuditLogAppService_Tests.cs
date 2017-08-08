@@ -10,6 +10,7 @@ using YT.Auditing.Dto;
 using YT.Authorization.Users;
 using Shouldly;
 using Xunit;
+using YT.Managers.Users;
 
 namespace YT.Tests.Auditing
 {

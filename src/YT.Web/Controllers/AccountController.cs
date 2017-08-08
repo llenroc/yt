@@ -432,7 +432,7 @@ namespace YT.Web.Controllers
                     };
 
                     model.UserName = model.EmailAddress;
-                    model.Password = Authorization.Users.User.CreateRandomPassword();
+                    model.Password = Managers.Users.User.CreateRandomPassword();
 
                     if (string.Equals(externalLoginInfo.Email, model.EmailAddress, StringComparison.InvariantCultureIgnoreCase))
                     {
@@ -967,7 +967,6 @@ namespace YT.Web.Controllers
 
         #region Impersonation
 
-        [AbpMvcAuthorize(AppPermissions.Pages_Administration_Users_Impersonation)]
         [DisableAbpAntiForgeryTokenValidation]
         public virtual async Task<JsonResult> Impersonate(ImpersonateModel model)
         {

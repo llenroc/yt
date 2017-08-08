@@ -14,7 +14,6 @@ using YT.Net.MimeTypes;
 
 namespace YT.Logging
 {
-    [AbpAuthorize(AppPermissions.Pages_Administration_Host_Maintenance)]
     public class WebLogAppService : YtAppServiceBase, IWebLogAppService
     {
         private readonly IAppFolders _appFolders;

@@ -1,4 +1,4 @@
-namespace YT.Authorization.Roles
+namespace YT.Managers.Roles
 {
     public static class StaticRoleNames
     {

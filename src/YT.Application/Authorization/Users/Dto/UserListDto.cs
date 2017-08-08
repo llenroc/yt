@@ -5,6 +5,7 @@ using Abp.Authorization.Users;
 using Abp.AutoMapper;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
+using YT.Managers.Users;
 
 namespace YT.Authorization.Users.Dto
 {

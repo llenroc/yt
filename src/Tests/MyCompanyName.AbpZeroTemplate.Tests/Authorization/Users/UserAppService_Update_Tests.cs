@@ -8,6 +8,8 @@ using YT.Authorization.Users;
 using YT.Authorization.Users.Dto;
 using Shouldly;
 using Xunit;
+using YT.Managers.Roles;
+using YT.Managers.Users;
 
 namespace YT.Tests.Authorization.Users
 {

@@ -1,7 +1,7 @@
 using Abp.MultiTenancy;
 using Abp.Zero.Configuration;
 
-namespace YT.Authorization.Roles
+namespace YT.Managers.Roles
 {
     public static class AppRoleConfig
     {

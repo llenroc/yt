@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Abp.AutoMapper;
+using YT.Managers.Roles;
 
 namespace YT.Authorization.Roles.Dto
 {

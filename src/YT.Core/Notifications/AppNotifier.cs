@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Abp;
 using Abp.Localization;
 using Abp.Notifications;
-using YT.Authorization.Users;
+using YT.Managers.Users;
 using YT.Managers.MultiTenancy;
 using YT.MultiTenancy;
 

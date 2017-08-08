@@ -1,12 +1,9 @@
 using System.Linq;
-using Abp.Authorization;
 using Abp.Authorization.Roles;
 using Abp.Authorization.Users;
-using Abp.MultiTenancy;
-using YT.Authorization;
-using YT.Authorization.Roles;
-using YT.Authorization.Users;
 using YT.EntityFramework;
+using YT.Managers.Roles;
+using YT.Managers.Users;
 
 namespace YT.Migrations.Seed.Host
 {

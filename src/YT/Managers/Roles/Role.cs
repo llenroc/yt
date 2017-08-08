@@ -1,11 +1,10 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Authorization.Roles;
-using YT.Authorization.Users;
+using YT.Managers.Users;
 
-namespace YT.Authorization.Roles
+namespace YT.Managers.Roles
 {
-    /// <summary>
-    /// Represents a role in the system.
-    /// </summary>
+  [Table("yt_roles")]
     public class Role : AbpRole<User>
     {
         //Can add application specific role properties here

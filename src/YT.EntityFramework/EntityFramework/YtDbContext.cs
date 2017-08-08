@@ -1,10 +1,10 @@
 using System.Data.Common;
 using System.Data.Entity;
 using Abp.Zero.EntityFramework;
-using YT.Authorization.Roles;
-using YT.Authorization.Users;
 using YT.Authorizations;
 using YT.Managers.MultiTenancy;
+using YT.Managers.Roles;
+using YT.Managers.Users;
 using YT.MultiTenancy;
 using YT.Navigations;
 using YT.Storage;

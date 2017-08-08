@@ -1,8 +1,8 @@
 using Abp.Authorization.Roles;
 using Abp.Authorization.Users;
 using Abp.Domain.Repositories;
-using YT.Authorization.Roles;
-using YT.Authorization.Users;
+using YT.Managers.Roles;
+using YT.Managers.Users;
 
 namespace YT.Managers.Roles
 {
