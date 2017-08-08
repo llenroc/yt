@@ -17,8 +17,6 @@ using Abp.Zero.Configuration;
 using Castle.MicroKernel.Registration;
 using Hangfire;
 using Microsoft.Owin.Security;
-using YT.Web.App.Startup;//SPA!
-using YT.Web.Areas.Mpa.Startup;//MPA!
 using YT.Web.Bundling;
 using YT.Web.Navigation;
 using YT.Web.Routing;
@@ -47,9 +45,9 @@ namespace YT.Web
             Configuration.Modules.Zero().LanguageManagement.EnableDbLocalization();
 
             //Configure navigation/menu
-            Configuration.Navigation.Providers.Add<AppNavigationProvider>();//SPA!
-            Configuration.Navigation.Providers.Add<FrontEndNavigationProvider>();
-            Configuration.Navigation.Providers.Add<MpaNavigationProvider>();//MPA!
+          //  Configuration.Navigation.Providers.Add<AppNavigationProvider>();//SPA!
+          //  Configuration.Navigation.Providers.Add<FrontEndNavigationProvider>();
+         //   Configuration.Navigation.Providers.Add<MpaNavigationProvider>();//MPA!
 
             Configuration.Modules.AbpWebCommon().MultiTenancy.DomainFormat = WebUrlService.WebSiteRootAddress;
 
@@ -76,17 +74,17 @@ namespace YT.Web
                 );
 
             //Areas
-            AreaRegistration.RegisterAllAreas();
+          //  AreaRegistration.RegisterAllAreas();
 
             //Routes
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             //Bundling
-            BundleTable.Bundles.IgnoreList.Clear();
-            CommonBundleConfig.RegisterBundles(BundleTable.Bundles);
-            AppBundleConfig.RegisterBundles(BundleTable.Bundles);//SPA!
-            FrontEndBundleConfig.RegisterBundles(BundleTable.Bundles);
-            MpaBundleConfig.RegisterBundles(BundleTable.Bundles);//MPA!
+         //   BundleTable.Bundles.IgnoreList.Clear();
+          //  CommonBundleConfig.RegisterBundles(BundleTable.Bundles);
+         //   AppBundleConfig.RegisterBundles(BundleTable.Bundles);//SPA!
+         //   FrontEndBundleConfig.RegisterBundles(BundleTable.Bundles);
+          //  MpaBundleConfig.RegisterBundles(BundleTable.Bundles);//MPA!
         }
 
         public override void PostInitialize()
