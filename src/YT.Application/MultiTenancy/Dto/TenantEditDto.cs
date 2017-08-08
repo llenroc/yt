@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
+using YT.Managers.MultiTenancy;
 
 namespace YT.MultiTenancy.Dto
 {

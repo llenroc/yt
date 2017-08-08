@@ -1,6 +1,6 @@
 using Abp.Runtime.Caching;
 
-namespace YT.Authorization.Impersonation
+namespace YT.Managers.Impersonation
 {
     public static class ImpersonationCacheManagerExtensions
     {

@@ -7,6 +7,7 @@ using Abp.Domain.Uow;
 using Abp.Extensions;
 using Abp.MultiTenancy;
 using Abp.Runtime.Security;
+using YT.Managers.MultiTenancy;
 using YT.MultiTenancy;
 
 namespace YT.Migrator

@@ -4,7 +4,7 @@ using Abp.Domain.Uow;
 using Abp.MultiTenancy;
 using Abp.Runtime.Caching;
 using YT.Authorization.Users;
-using YT.MultiTenancy;
+using YT.Managers.MultiTenancy;
 
 namespace YT.Editions
 {

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Abp.AutoMapper;
+using YT.Managers.MultiTenancy;
 using YT.MultiTenancy;
 
 namespace YT.Web.Models.Account

@@ -18,7 +18,6 @@ using Castle.MicroKernel.Registration;
 using Hangfire;
 using Microsoft.Owin.Security;
 using YT.Web.Bundling;
-using YT.Web.Navigation;
 using YT.Web.Routing;
 using YT.WebApi;
 

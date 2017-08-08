@@ -1,6 +1,7 @@
 using System.Linq;
 using YT.Editions;
 using YT.EntityFramework;
+using YT.Managers.MultiTenancy;
 
 namespace YT.Migrations.Seed.Tenants
 {
@@ -22,10 +23,11 @@ namespace YT.Migrations.Seed.Tenants
         {
             //Default tenant
 
-            var defaultTenant = _context.Tenants.FirstOrDefault(t => t.TenancyName == MultiTenancy.Tenant.DefaultTenantName);
+            var defaultTenant = _context.Tenants.FirstOrDefault(t => t.TenancyName == Tenant.DefaultTenantName);
             if (defaultTenant == null)
             {
-                defaultTenant = new MultiTenancy.Tenant(MultiTenancy.Tenant.DefaultTenantName, MultiTenancy.Tenant.DefaultTenantName);
+                defaultTenant = new Tenant(Tenant.DefaultTenantName,
+                    Tenant.DefaultTenantName);
 
                 var defaultEdition = _context.Editions.FirstOrDefault(e => e.Name == EditionManager.DefaultEditionName);
                 if (defaultEdition != null)

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Abp.MultiTenancy;
 using YT.Authorization.Users;
 
-namespace YT.MultiTenancy
+namespace YT.Managers.MultiTenancy
 {
     /// <summary>
     /// Represents a Tenant in the system.

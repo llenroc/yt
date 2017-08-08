@@ -21,6 +21,7 @@ using Microsoft.Owin.Security;
 using YT.Authorization;
 using YT.Authorization.Users;
 using YT.Editions;
+using YT.Managers.MultiTenancy;
 using YT.MultiTenancy;
 using YT.Notifications;
 using YT.Web.Auth;

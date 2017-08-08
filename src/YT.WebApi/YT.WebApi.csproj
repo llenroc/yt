@@ -203,6 +203,10 @@
       <Project>{17298ea0-af73-4f30-b6f1-2066100d7d74}</Project>
       <Name>YT.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\YT\YT.csproj">
+      <Project>{6f11169f-136e-4b21-a03b-95696c0bce89}</Project>
+      <Name>YT</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="WebApi\Scripts\Swagger-Custom.js" />

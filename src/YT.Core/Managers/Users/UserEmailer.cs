@@ -7,11 +7,13 @@ using Abp.Domain.Uow;
 using Abp.Extensions;
 using Abp.Net.Mail;
 using Abp.Runtime.Security;
+using YT.Authorization.Users;
 using YT.Emailing;
-using YT.MultiTenancy;
+using YT.Managers.MultiTenancy;
 using YT.Web;
 
-namespace YT.Authorization.Users
+
+namespace YT.Managers.Users
 {
     /// <summary>
     /// Used to send email to users.

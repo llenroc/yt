@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Abp;
 using Abp.Notifications;
 using YT.Authorization.Users;
+using YT.Managers.MultiTenancy;
 using YT.MultiTenancy;
 
 namespace YT.Notifications

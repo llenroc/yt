@@ -10,10 +10,11 @@ using Abp.MultiTenancy;
 using Microsoft.AspNet.Identity;
 using YT.Authorization.Roles;
 using YT.Authorization.Users;
-using YT.Editions;
 using Abp.Extensions;
 using Abp.Notifications;
 using Abp.Runtime.Security;
+using YT.Editions;
+using YT.Managers.MultiTenancy;
 using YT.Notifications;
 
 namespace YT.MultiTenancy

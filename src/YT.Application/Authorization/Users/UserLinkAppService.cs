@@ -1,8 +1,9 @@
+
+
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Linq.Dynamic;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.Auditing;
@@ -12,8 +13,7 @@ using Abp.Domain.Repositories;
 using Abp.Runtime.Session;
 using Abp.UI;
 using YT.Authorization.Users.Dto;
-using YT.MultiTenancy;
-
+using YT.Managers.MultiTenancy;
 namespace YT.Authorization.Users
 {
     [AbpAuthorize]
@@ -133,7 +133,7 @@ namespace YT.Authorization.Users
                         TenancyName = tenant == null ? "." : tenant.TenancyName,
                         Username = userAccount.UserName,
                         LastLoginTime = userAccount.LastLoginTime
-                    }).OrderBy(sorting);
+                    }).OrderBy(c=>c.Id);
         }
     }
 }

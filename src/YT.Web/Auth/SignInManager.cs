@@ -4,6 +4,7 @@ using Abp.Domain.Uow;
 using Microsoft.Owin.Security;
 using YT.Authorization.Roles;
 using YT.Authorization.Users;
+using YT.Managers.MultiTenancy;
 using YT.MultiTenancy;
 
 namespace YT.Web.Auth

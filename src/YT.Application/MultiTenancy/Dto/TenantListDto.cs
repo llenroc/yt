@@ -3,6 +3,7 @@ using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
+using YT.Managers.MultiTenancy;
 
 namespace YT.MultiTenancy.Dto
 {

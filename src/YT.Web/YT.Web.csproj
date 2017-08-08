@@ -427,8 +427,6 @@
     <Compile Include="App_Start\Bundling\ScriptPaths.cs" />
     <Compile Include="App_Start\Bundling\StylePaths.cs" />
     <Compile Include="App_Start\YtWebModule.cs" />
-    <Compile Include="App_Start\Navigation\FrontEndNavigationProvider.cs" />
-    <Compile Include="App_Start\Navigation\PageNames.cs" />
     <Compile Include="App_Start\Routing\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Auth\AuthenticationManagerExtensions.cs" />
@@ -515,6 +513,10 @@
     <ProjectReference Include="..\YT.WebApi\YT.WebApi.csproj">
       <Project>{5EB52D3D-09FD-463A-B02A-8D9856BD3724}</Project>
       <Name>YT.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YT\YT.csproj">
+      <Project>{6f11169f-136e-4b21-a03b-95696c0bce89}</Project>
+      <Name>YT</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

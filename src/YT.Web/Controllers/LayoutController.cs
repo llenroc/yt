@@ -8,10 +8,10 @@ using Abp.MultiTenancy;
 using Abp.Runtime.Session;
 using Abp.Threading;
 using YT.Configuration;
+using YT.Managers.MultiTenancy;
 using YT.MultiTenancy;
 using YT.Web.Models.Layout;
 using YT.Web.MultiTenancy;
-using YT.Web.Navigation;
 using YT.Web.Session;
 
 namespace YT.Web.Controllers
@@ -60,7 +60,7 @@ namespace YT.Web.Controllers
             headerModel.Languages = _languageManager.GetLanguages();
             headerModel.CurrentLanguage = _languageManager.CurrentLanguage;
 
-            headerModel.Menu = AsyncHelper.RunSync(() => _userNavigationManager.GetMenuAsync(FrontEndNavigationProvider.MenuName, AbpSession.ToUserIdentifier()));
+          //  headerModel.Menu = AsyncHelper.RunSync(() => _userNavigationManager.GetMenuAsync(FrontEndNavigationProvider.MenuName, AbpSession.ToUserIdentifier()));
             headerModel.CurrentPageName = currentPageName;
 
             headerModel.IsMultiTenancyEnabled = _multiTenancyConfig.IsEnabled;

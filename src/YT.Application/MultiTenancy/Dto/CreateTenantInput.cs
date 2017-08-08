@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using Abp.Application.Services.Dto;
 using Abp.MultiTenancy;
 using YT.Authorization.Users;
+using YT.Managers.MultiTenancy;
 
 namespace YT.MultiTenancy.Dto
 {

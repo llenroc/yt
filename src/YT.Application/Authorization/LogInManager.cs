@@ -8,6 +8,7 @@ using Abp.Domain.Uow;
 using Abp.Zero.Configuration;
 using YT.Authorization.Roles;
 using YT.Authorization.Users;
+using YT.Managers.MultiTenancy;
 using YT.MultiTenancy;
 
 namespace YT.Authorization

@@ -6,7 +6,6 @@ using System.Linq;
 using System.Linq.Dynamic;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
-using Abp.Authorization;
 using Abp.Authorization.Roles;
 using Abp.Authorization.Users;
 using Abp.AutoMapper;
@@ -25,12 +24,13 @@ using YT.Authorization.Roles;
 using YT.Authorization.Users.Dto;
 using YT.Authorization.Users.Exporting;
 using YT.Dto;
-using YT.Features;
 using YT.Notifications;
 
 namespace YT.Authorization.Users
 {
-    [AbpAuthorize(AppPermissions.Pages_Administration_Users)]
+    /// <summary>
+    /// 用户service
+    /// </summary>
     public class UserAppService : YtAppServiceBase, IUserAppService
     {
         private readonly RoleManager _roleManager;
@@ -42,7 +42,18 @@ namespace YT.Authorization.Users
         private readonly IRepository<UserPermissionSetting, long> _userPermissionRepository;
         private readonly IRepository<UserRole, long> _userRoleRepository;
         private readonly IUserPolicy _userPolicy;
-
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="roleManager"></param>
+        /// <param name="userEmailer"></param>
+        /// <param name="userListExcelExporter"></param>
+        /// <param name="notificationSubscriptionManager"></param>
+        /// <param name="appNotifier"></param>
+        /// <param name="rolePermissionRepository"></param>
+        /// <param name="userPermissionRepository"></param>
+        /// <param name="userRoleRepository"></param>
+        /// <param name="userPolicy"></param>
         public UserAppService(
             RoleManager roleManager,
             IUserEmailer userEmailer,
@@ -64,7 +75,11 @@ namespace YT.Authorization.Users
             _userRoleRepository = userRoleRepository;
             _userPolicy = userPolicy;
         }
-
+        /// <summary>
+        /// 获取用户 分页
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task<PagedResultDto<UserListDto>> GetUsers(GetUsersInput input)
         {
             var query = UserManager.Users
@@ -107,7 +122,10 @@ namespace YT.Authorization.Users
                 userListDtos
                 );
         }
-
+        /// <summary>
+        /// 导出用户
+        /// </summary>
+        /// <returns></returns>
         public async Task<FileDto> GetUsersToExcel()
         {
             var users = await UserManager.Users.Include(u => u.Roles).ToListAsync();
@@ -116,8 +134,11 @@ namespace YT.Authorization.Users
 
             return _userListExcelExporter.ExportToFile(userListDtos);
         }
-
-        [AbpAuthorize(AppPermissions.Pages_Administration_Users_Create, AppPermissions.Pages_Administration_Users_Edit)]
+        /// <summary>
+        /// 获取用户用于编辑
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task<GetUserForEditOutput> GetUserForEdit(NullableIdDto<long> input)
         {
             //Getting all available roles
@@ -172,8 +193,11 @@ namespace YT.Authorization.Users
 
             return output;
         }
-
-        [AbpAuthorize(AppPermissions.Pages_Administration_Users_ChangePermissions)]
+        /// <summary>
+        /// 获取用户的权限 和信息
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task<GetUserPermissionsForEditOutput> GetUserPermissionsForEdit(EntityDto<long> input)
         {
             var user = await UserManager.GetUserByIdAsync(input.Id);
@@ -186,22 +210,32 @@ namespace YT.Authorization.Users
                 GrantedPermissionNames = grantedPermissions.Select(p => p.Name).ToList()
             };
         }
-
-        [AbpAuthorize(AppPermissions.Pages_Administration_Users_ChangePermissions)]
+        /// <summary>
+        /// 重置用户的权限
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task ResetUserSpecificPermissions(EntityDto<long> input)
         {
             var user = await UserManager.GetUserByIdAsync(input.Id);
             await UserManager.ResetAllPermissionsAsync(user);
         }
-
-        [AbpAuthorize(AppPermissions.Pages_Administration_Users_ChangePermissions)]
+        /// <summary>
+        /// 更新用户权限
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task UpdateUserPermissions(UpdateUserPermissionsInput input)
         {
             var user = await UserManager.GetUserByIdAsync(input.Id);
             var grantedPermissions = PermissionManager.GetPermissionsFromNamesByValidating(input.GrantedPermissionNames);
             await UserManager.SetGrantedPermissionsAsync(user, grantedPermissions);
         }
-
+        /// <summary>
+        /// 编辑用户
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task CreateOrUpdateUser(CreateOrUpdateUserInput input)
         {
             if (input.User.Id.HasValue)
@@ -213,8 +247,11 @@ namespace YT.Authorization.Users
                 await CreateUserAsync(input);
             }
         }
-
-        [AbpAuthorize(AppPermissions.Pages_Administration_Users_Delete)]
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task DeleteUser(EntityDto<long> input)
         {
             if (input.Id == AbpSession.GetUserId())
@@ -225,14 +262,21 @@ namespace YT.Authorization.Users
             var user = await UserManager.GetUserByIdAsync(input.Id);
             CheckErrors(await UserManager.DeleteAsync(user));
         }
-
+        /// <summary>
+        /// 解锁用户
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task UnlockUser(EntityDto<long> input)
         {
             var user = await UserManager.GetUserByIdAsync(input.Id);
             user.Unlock();
         }
-
-        [AbpAuthorize(AppPermissions.Pages_Administration_Users_Edit)]
+        /// <summary>
+        /// 更新用户
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         protected virtual async Task UpdateUserAsync(CreateOrUpdateUserInput input)
         {
             Debug.Assert(input.User.Id != null, "input.User.Id should be set.");
@@ -263,8 +307,11 @@ namespace YT.Authorization.Users
                 await _userEmailer.SendEmailActivationLinkAsync(user, input.User.Password);
             }
         }
-
-        [AbpAuthorize(AppPermissions.Pages_Administration_Users_Create)]
+        /// <summary>
+        /// 创建用户
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         protected virtual async Task CreateUserAsync(CreateOrUpdateUserInput input)
         {
             if (AbpSession.TenantId.HasValue)
@@ -310,7 +357,11 @@ namespace YT.Authorization.Users
                 await _userEmailer.SendEmailActivationLinkAsync(user, input.User.Password);
             }
         }
-        
+        /// <summary>
+        /// 获取角色名
+        /// </summary>
+        /// <param name="userListDtos"></param>
+        /// <returns></returns>
         private async Task FillRoleNames(List<UserListDto> userListDtos)
         {
             /* This method is optimized to fill role names to given list. */

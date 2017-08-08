@@ -4,6 +4,7 @@ using Abp.Configuration.Startup;
 using Abp.Dependency;
 using Abp.Extensions;
 using Abp.Text;
+using YT.Managers.MultiTenancy;
 using YT.MultiTenancy;
 
 namespace YT.Web.MultiTenancy

@@ -11,6 +11,7 @@ using YT.MultiTenancy.Dto;
 using YT.Notifications;
 using Shouldly;
 using Xunit;
+using YT.Managers.MultiTenancy;
 
 namespace YT.Tests.MultiTenancy
 {

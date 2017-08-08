@@ -1,7 +1,7 @@
 using Abp.Authorization;
+using Microsoft.AspNet.Identity;
 using YT.Authorization.Roles;
 using YT.Authorization.Users;
-using YT.MultiTenancy;
 
 namespace YT.Authorization
 {

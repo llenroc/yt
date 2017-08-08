@@ -1,6 +1,6 @@
 using System;
 
-namespace YT.Authorization.Impersonation
+namespace YT.Managers.Impersonation
 {
     [Serializable]
     public class ImpersonationCacheItem
