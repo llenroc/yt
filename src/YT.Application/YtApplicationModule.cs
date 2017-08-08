@@ -9,9 +9,12 @@ namespace YT
     /// <summary>
     /// Application layer module of the application.
     /// </summary>
-    [DependsOn(typeof(YtCoreModule))]
+    [DependsOn(typeof(YtModel), typeof(YtCoreModule))]
     public class YtApplicationModule : AbpModule
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public override void PreInitialize()
         {
             //Adding authorization providers
@@ -20,7 +23,9 @@ namespace YT
             //Adding custom AutoMapper mappings
             Configuration.Modules.AbpAutoMapper().Configurators.Add(CustomDtoMapper.CreateMappings);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());

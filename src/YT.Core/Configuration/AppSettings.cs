@@ -4,12 +4,9 @@ namespace YT.Configuration
     /// Defines string constants for setting names in the application.
     /// See <see cref="AppSettingProvider"/> for setting definitions.
     /// </summary>
-    public static class AppSettings
+    public  static partial class AppSettings
     {
-        public static class General
-        {
-            //no setting yet
-        }
+    
 
         public static class TenantManagement
         {

@@ -6,6 +6,7 @@ using YT.Authorization.Users;
 using YT.Chat;
 using YT.Friendships;
 using YT.MultiTenancy;
+using YT.Navigations;
 using YT.Storage;
 
 namespace YT.EntityFramework
@@ -27,6 +28,11 @@ namespace YT.EntityFramework
         public virtual IDbSet<Friendship> Friendships { get; set; }
 
         public virtual IDbSet<ChatMessage> ChatMessages { get; set; }
+
+            /// <summary>
+            /// ≤Àµ•≈‰÷√
+            /// </summary>
+            public  virtual  IDbSet<Menu> Menus { get; set; }
 
         public YtDbContext()
             : base("Default")

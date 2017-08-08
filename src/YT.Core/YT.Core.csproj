@@ -127,6 +127,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\AppSettings.cs" />
     <Compile Include="YtConsts.cs" />
     <Compile Include="YtCoreModule.cs" />
     <Compile Include="YtDomainServiceBase.cs" />
@@ -165,7 +166,6 @@
     <Compile Include="Chat\IChatMessageManager.cs" />
     <Compile Include="Chat\NullChatCommunicator.cs" />
     <Compile Include="Configuration\AppSettingProvider.cs" />
-    <Compile Include="Configuration\AppSettings.cs" />
     <Compile Include="Debugging\DebugHelper.cs" />
     <Compile Include="Editions\EditionManager.cs" />
     <Compile Include="Editions\FeatureValueStore.cs" />
@@ -223,7 +223,12 @@
     <EmbeddedResource Include="Localization\AbpZeroTemplate\AbpZeroTemplate-zh-CN.xml" />
     <EmbeddedResource Include="Emailing\EmailTemplates\default.html" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\YT\YT.csproj">
+      <Project>{6f11169f-136e-4b21-a03b-95696c0bce89}</Project>
+      <Name>YT</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

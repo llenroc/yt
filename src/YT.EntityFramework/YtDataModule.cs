@@ -9,7 +9,7 @@ namespace YT
     /// <summary>
     /// Entity framework module of the application.
     /// </summary>
-    [DependsOn(typeof(AbpZeroEntityFrameworkModule), typeof(YtCoreModule))]
+    [DependsOn(typeof(AbpZeroEntityFrameworkModule), typeof(YtCoreModule),typeof(YtModel))]
     public class YtDataModule : AbpModule
     {
         public override void PreInitialize()

@@ -319,6 +319,10 @@
       <Project>{17298EA0-AF73-4F30-B6F1-2066100D7D74}</Project>
       <Name>YT.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\YT\YT.csproj">
+      <Project>{6f11169f-136e-4b21-a03b-95696c0bce89}</Project>
+      <Name>YT</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
