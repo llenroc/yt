@@ -13,16 +13,22 @@ using YT.Logging.Dto;
 using YT.Net.MimeTypes;
 
 namespace YT.Logging
-{
+{/// <summary>
+ /// 
+ /// </summary>
     public class WebLogAppService : YtAppServiceBase, IWebLogAppService
     {
         private readonly IAppFolders _appFolders;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public WebLogAppService(IAppFolders appFolders)
         {
             _appFolders = appFolders;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public GetLatestWebLogsOutput GetLatestWebLogs()
         {
             var directory = new DirectoryInfo(_appFolders.WebLogsFolder);
@@ -63,7 +69,9 @@ namespace YT.Logging
                 LatesWebLogLines = lines.Take(lineCount).Reverse().ToList()
             };
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public FileDto DownloadWebLogs()
         {
             //Create temporary copy of logs

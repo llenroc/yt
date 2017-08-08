@@ -5,9 +5,13 @@ using YT.Authorization;
 using YT.Tenants.Dashboard.Dto;
 
 namespace YT.Tenants.Dashboard
-{
+{/// <summary>
+ /// 
+ /// </summary>
     public class TenantDashboardAppService : YtAppServiceBase, ITenantDashboardAppService
-    {
+    {/// <summary>
+     /// 
+     /// </summary>
         public GetMemberActivityOutput GetMemberActivity()
         {
             //Generating some random data. We could get numbers from database...

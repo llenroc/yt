@@ -5,18 +5,30 @@ using Abp.Runtime.Validation;
 using YT.Configuration.Host.Dto;
 
 namespace YT.Configuration.Tenants.Dto
-{
+{/// <summary>
+/// 
+/// </summary>
     public class TenantSettingsEditDto
-    {
+    {/// <summary>
+    /// 
+    /// </summary>
         public GeneralSettingsEditDto General { get; set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
         [Required]
         public TenantUserManagementSettingsEditDto UserManagement { get; set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public EmailSettingsEditDto Email { get; set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public LdapSettingsEditDto Ldap { get; set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
         [Required]
         public SecuritySettingsEditDto Security { get; set; }
 

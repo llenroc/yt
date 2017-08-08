@@ -16,13 +16,17 @@ using YT.Authorization;
 using YT.Localization.Dto;
 
 namespace YT.Localization
-{
+{/// <summary>
+ /// 
+ /// </summary>
     public class LanguageAppService : YtAppServiceBase, ILanguageAppService
     {
         private readonly IApplicationLanguageManager _applicationLanguageManager;
         private readonly IApplicationLanguageTextManager _applicationLanguageTextManager;
         private readonly IRepository<ApplicationLanguage> _languageRepository;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public LanguageAppService(
             IApplicationLanguageManager applicationLanguageManager,
             IApplicationLanguageTextManager applicationLanguageTextManager,
@@ -32,7 +36,9 @@ namespace YT.Localization
             _languageRepository = languageRepository;
             _applicationLanguageTextManager = applicationLanguageTextManager;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<GetLanguagesOutput> GetLanguages()
         {
             var languages = (await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId)).OrderBy(l => l.DisplayName);
@@ -43,7 +49,9 @@ namespace YT.Localization
                 defaultLanguage == null ? null : defaultLanguage.Name
                 );
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<GetLanguageForEditOutput> GetLanguageForEdit(NullableIdDto input)
         {
             ApplicationLanguage language = null;
@@ -75,7 +83,9 @@ namespace YT.Localization
 
             return output;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task CreateOrUpdateLanguage(CreateOrUpdateLanguageInput input)
         {
             if (input.Language.Id.HasValue)
@@ -87,13 +97,17 @@ namespace YT.Localization
                 await CreateLanguageAsync(input);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task DeleteLanguage(EntityDto input)
         {
             var language = await _languageRepository.GetAsync(input.Id);
             await _applicationLanguageManager.RemoveAsync(AbpSession.TenantId, language.Name);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task SetDefaultLanguage(SetDefaultLanguageInput input)
         {
             await _applicationLanguageManager.SetDefaultLanguageAsync(
@@ -101,7 +115,9 @@ namespace YT.Localization
                 GetCultureInfoByChecking(input.Name).Name
                 );
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<PagedResultDto<LanguageTextListDto>> GetLanguageTexts(GetLanguageTextsInput input)
         {
             /* Note: This method is used by SPA without paging, MPA with paging.
@@ -176,14 +192,18 @@ namespace YT.Localization
                 languageTexts.ToList()
                 );
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task UpdateLanguageText(UpdateLanguageTextInput input)
         {
             var culture = GetCultureInfoByChecking(input.LanguageName);
             var source = LocalizationManager.GetSource(input.SourceName);
             await _applicationLanguageTextManager.UpdateStringAsync(AbpSession.TenantId, source.Name, culture, input.Key, input.Value);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual async Task CreateLanguageAsync(CreateOrUpdateLanguageInput input)
         {
             var culture = GetCultureInfoByChecking(input.Language.Name);
@@ -199,7 +219,9 @@ namespace YT.Localization
                     )
                 );
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual async Task UpdateLanguageAsync(CreateOrUpdateLanguageInput input)
         {
             Debug.Assert(input.Language.Id != null, "input.Language.Id != null");

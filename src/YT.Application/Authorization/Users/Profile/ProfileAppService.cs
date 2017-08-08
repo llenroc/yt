@@ -18,13 +18,21 @@ using Newtonsoft.Json;
 
 namespace YT.Authorization.Users.Profile
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [AbpAuthorize]
     public class ProfileAppService : YtAppServiceBase, IProfileAppService
     {
         private readonly IAppFolders _appFolders;
         private readonly IBinaryObjectManager _binaryObjectManager;
         private readonly ITimeZoneService _timeZoneService;
-
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="appFolders"></param>
+        /// <param name="binaryObjectManager"></param>
+        /// <param name="timezoneService"></param>
         public ProfileAppService(
             IAppFolders appFolders,
             IBinaryObjectManager binaryObjectManager,
@@ -34,7 +42,10 @@ namespace YT.Authorization.Users.Profile
             _binaryObjectManager = binaryObjectManager;
             _timeZoneService = timezoneService;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public async Task<CurrentUserProfileEditDto> GetCurrentUserProfileForEdit()
         {
             var user = await GetCurrentUserAsync();
@@ -53,7 +64,11 @@ namespace YT.Authorization.Users.Profile
 
             return userProfileEditDto;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task UpdateCurrentUserProfile(CurrentUserProfileEditDto input)
         {
             var user = await GetCurrentUserAsync();
@@ -73,7 +88,11 @@ namespace YT.Authorization.Users.Profile
                 }
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task ChangePassword(ChangePasswordInput input)
         {
             await CheckPasswordComplexity(input.NewPassword);
@@ -81,7 +100,11 @@ namespace YT.Authorization.Users.Profile
             var user = await GetCurrentUserAsync();
             CheckErrors(await UserManager.ChangePasswordAsync(user.Id, input.CurrentPassword, input.NewPassword));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task UpdateProfilePicture(UpdateProfilePictureInput input)
         {
             var tempProfilePicturePath = Path.Combine(_appFolders.TempFileDownloadFolder, input.FileName);
@@ -124,7 +147,10 @@ namespace YT.Authorization.Users.Profile
 
             FileHelper.DeleteIfExists(tempProfilePicturePath);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public async Task<GetPasswordComplexitySettingOutput> GetPasswordComplexitySetting()
         {
             var settingValue = await SettingManager.GetSettingValueAsync(AppSettings.Security.PasswordComplexity);

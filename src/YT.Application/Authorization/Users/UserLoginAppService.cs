@@ -12,17 +12,25 @@ using Abp.Runtime.Session;
 using YT.Authorization.Users.Dto;
 
 namespace YT.Authorization.Users
-{
+{/// <summary>
+/// 
+/// </summary>
     [AbpAuthorize]
     public class UserLoginAppService : YtAppServiceBase, IUserLoginAppService
     {
         private readonly IRepository<UserLoginAttempt, long> _userLoginAttemptRepository;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userLoginAttemptRepository"></param>
         public UserLoginAppService(IRepository<UserLoginAttempt, long> userLoginAttemptRepository)
         {
             _userLoginAttemptRepository = userLoginAttemptRepository;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [DisableAuditing]
         public async Task<ListResultDto<UserLoginAttemptDto>> GetRecentUserLoginAttempts()
         {

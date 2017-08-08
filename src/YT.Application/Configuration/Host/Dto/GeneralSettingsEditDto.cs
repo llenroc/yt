@@ -1,7 +1,11 @@
 namespace YT.Configuration.Host.Dto
-{
+{/// <summary>
+/// 
+/// </summary>
     public class GeneralSettingsEditDto
-    {
+    {/// <summary>
+    /// 
+    /// </summary>
         public string Timezone { get; set; }
 
         /// <summary>

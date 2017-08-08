@@ -2,9 +2,13 @@ using System;
 using System.Collections.Generic;
 
 namespace YT.Localization
-{
+{ /// <summary>
+  /// 
+  /// </summary>
     public static class FamFamFamFlagsHelper
-    {
+    { /// <summary>
+      /// 
+      /// </summary>
         public static List<string> FlagClassNames = new List<string>
         {
             "famfamfam-flag-zw",
@@ -264,7 +268,9 @@ namespace YT.Localization
             "famfamfam-flag-np",
             "famfamfam-flag-ch"
         };
-
+        /// <summary>
+        /// 
+        /// </summary>
         public static string GetCountryCode(string famfamFlagName)
         {
             return famfamFlagName.Substring(

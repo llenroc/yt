@@ -12,14 +12,18 @@ using Abp.Runtime.Session;
 using YT.Notifications.Dto;
 
 namespace YT.Notifications
-{
+{ /// <summary>
+  /// 
+  /// </summary>
     [AbpAuthorize]
     public class NotificationAppService : YtAppServiceBase, INotificationAppService
     {
         private readonly INotificationDefinitionManager _notificationDefinitionManager;
         private readonly IUserNotificationManager _userNotificationManager;
         private readonly INotificationSubscriptionManager _notificationSubscriptionManager;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public NotificationAppService(
             INotificationDefinitionManager notificationDefinitionManager,
             IUserNotificationManager userNotificationManager, 
@@ -29,7 +33,9 @@ namespace YT.Notifications
             _userNotificationManager = userNotificationManager;
             _notificationSubscriptionManager = notificationSubscriptionManager;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         [DisableAuditing]
         public async Task<GetNotificationsOutput> GetUserNotifications(GetUserNotificationsInput input)
         {
@@ -47,12 +53,16 @@ namespace YT.Notifications
 
             return new GetNotificationsOutput(totalCount, unreadCount, notifications);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task SetAllNotificationsAsRead()
         {
             await _userNotificationManager.UpdateAllUserNotificationStatesAsync(AbpSession.ToUserIdentifier(), UserNotificationState.Read);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task SetNotificationAsRead(EntityDto<Guid> input)
         {
             var userNotification = await _userNotificationManager.GetUserNotificationAsync(AbpSession.TenantId, input.Id);
@@ -63,7 +73,9 @@ namespace YT.Notifications
 
             await _userNotificationManager.UpdateUserNotificationStateAsync(AbpSession.TenantId, input.Id, UserNotificationState.Read);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<GetNotificationSettingsOutput> GetNotificationSettings()
         {
             var output = new GetNotificationSettingsOutput();
@@ -84,7 +96,9 @@ namespace YT.Notifications
 
             return output;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task UpdateNotificationSettings(UpdateNotificationSettingsInput input)
         {
             await SettingManager.ChangeSettingForUserAsync(AbpSession.ToUserIdentifier(), NotificationSettingNames.ReceiveNotifications, input.ReceiveNotifications.ToString());

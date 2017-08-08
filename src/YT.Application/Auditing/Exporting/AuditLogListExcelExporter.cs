@@ -7,12 +7,16 @@ using YT.DataExporting.Excel.EpPlus;
 using YT.Dto;
 
 namespace YT.Auditing.Exporting
-{
+{ /// <summary>
+  /// 日志导出service
+  /// </summary>
     public class AuditLogListExcelExporter : EpPlusExcelExporterBase, IAuditLogListExcelExporter
     {
         private readonly ITimeZoneConverter _timeZoneConverter;
         private readonly IAbpSession _abpSession;
-
+        /// <summary>
+        /// ctor
+        /// </summary>
         public AuditLogListExcelExporter(
             ITimeZoneConverter timeZoneConverter,
             IAbpSession abpSession)
@@ -20,7 +24,9 @@ namespace YT.Auditing.Exporting
             _timeZoneConverter = timeZoneConverter;
             _abpSession = abpSession;
         }
-
+        /// <summary>
+        /// 导出日志
+        /// </summary>
         public FileDto ExportToFile(List<AuditLogListDto> auditLogListDtos)
         {
             return CreateExcelPackage(

@@ -9,17 +9,25 @@ using YT.Common.Dto;
 using YT.Editions;
 
 namespace YT.Common
-{
+{/// <summary>
+/// 
+/// </summary>
     [AbpAuthorize]
     public class CommonLookupAppService : YtAppServiceBase, ICommonLookupAppService
     {
         private readonly EditionManager _editionManager;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="editionManager"></param>
         public CommonLookupAppService(EditionManager editionManager)
         {
             _editionManager = editionManager;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public async Task<ListResultDto<ComboboxItemDto>> GetEditionsForCombobox()
         {
             var editions = await _editionManager.Editions.ToListAsync();
@@ -27,7 +35,11 @@ namespace YT.Common
                 editions.Select(e => new ComboboxItemDto(e.Id.ToString(), e.DisplayName)).ToList()
                 );
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task<PagedResultDto<NameValueDto>> FindUsers(FindUsersInput input)
         {
             if (AbpSession.TenantId != null)
@@ -66,7 +78,10 @@ namespace YT.Common
                     );
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string GetDefaultEditionName()
         {
             return EditionManager.DefaultEditionName;

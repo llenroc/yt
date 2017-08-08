@@ -18,7 +18,9 @@ using YT.Dto;
 using YT.Managers.Users;
 
 namespace YT.Auditing
-{
+{/// <summary>
+ /// 
+ /// </summary>
     [DisableAuditing]
     public class AuditLogAppService : YtAppServiceBase, IAuditLogAppService
     {
@@ -26,7 +28,9 @@ namespace YT.Auditing
         private readonly IRepository<User, long> _userRepository;
         private readonly IAuditLogListExcelExporter _auditLogListExcelExporter;
         private readonly INamespaceStripper _namespaceStripper;
-    
+        /// <summary>
+        /// 
+        /// </summary>
         public AuditLogAppService(
             IRepository<AuditLog, long> auditLogRepository, 
             IRepository<User, long> userRepository, 
@@ -38,7 +42,9 @@ namespace YT.Auditing
             _auditLogListExcelExporter = auditLogListExcelExporter;
             _namespaceStripper = namespaceStripper;
         }
-        
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<PagedResultDto<AuditLogListDto>> GetAuditLogs(GetAuditLogsInput input)
         {
             var query = CreateAuditLogAndUsersQuery(input);
@@ -54,7 +60,9 @@ namespace YT.Auditing
 
             return new PagedResultDto<AuditLogListDto>(resultCount, auditLogListDtos);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<FileDto> GetAuditLogsToExcel(GetAuditLogsInput input)
         {
             var auditLogs = await CreateAuditLogAndUsersQuery(input)
@@ -66,7 +74,9 @@ namespace YT.Auditing
 
             return _auditLogListExcelExporter.ExportToFile(auditLogListDtos);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private List<AuditLogListDto> ConvertToAuditLogListDtos(List<AuditLogAndUser> results)
         {
             return results.Select(
@@ -78,7 +88,9 @@ namespace YT.Auditing
                     return auditLogListDto;
                 }).ToList();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private IQueryable<AuditLogAndUser> CreateAuditLogAndUsersQuery(GetAuditLogsInput input)
         {
             var query = from auditLog in _auditLogRepository.GetAll()

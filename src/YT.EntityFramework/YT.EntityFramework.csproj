@@ -149,6 +149,10 @@
     <Compile Include="Migrations\201708080620334_initdata.Designer.cs">
       <DependentUpon>201708080620334_initdata.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708080821491_awdawd.cs" />
+    <Compile Include="Migrations\201708080821491_awdawd.Designer.cs">
+      <DependentUpon>201708080821491_awdawd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="YtDataModule.cs" />
     <Compile Include="Migrations\Seed\Host\DefaultEditionCreator.cs" />
@@ -177,6 +181,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201708080620334_initdata.resx">
       <DependentUpon>201708080620334_initdata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708080821491_awdawd.resx">
+      <DependentUpon>201708080821491_awdawd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

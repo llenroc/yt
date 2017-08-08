@@ -18,9 +18,13 @@ using YT.Managers.Users;
 using YT.MultiTenancy.Dto;
 
 namespace YT.MultiTenancy
-{
+{/// <summary>
+ /// 
+ /// </summary>
     public class TenantAppService : YtAppServiceBase, ITenantAppService
-    {
+    {/// <summary>
+     /// 
+     /// </summary>
         public async Task<PagedResultDto<TenantListDto>> GetTenants(GetTenantsInput input)
         {
             var query = TenantManager.Tenants
@@ -40,7 +44,9 @@ namespace YT.MultiTenancy
                 tenants.MapTo<List<TenantListDto>>()
                 );
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         [UnitOfWork(IsDisabled = true)]
         public async Task CreateTenant(CreateTenantInput input)
         {
@@ -54,14 +60,18 @@ namespace YT.MultiTenancy
                 input.ShouldChangePasswordOnNextLogin,
                 input.SendActivationEmail);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<TenantEditDto> GetTenantForEdit(EntityDto input)
         {
             var tenantEditDto = (await TenantManager.GetByIdAsync(input.Id)).MapTo<TenantEditDto>();
             tenantEditDto.ConnectionString = SimpleStringCipher.Instance.Decrypt(tenantEditDto.ConnectionString);
             return tenantEditDto;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task UpdateTenant(TenantEditDto input)
         {
             input.ConnectionString = SimpleStringCipher.Instance.Encrypt(input.ConnectionString);
@@ -69,13 +79,17 @@ namespace YT.MultiTenancy
             input.MapTo(tenant);
             await TenantManager.UpdateAsync(tenant);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task DeleteTenant(EntityDto input)
         {
             var tenant = await TenantManager.GetByIdAsync(input.Id);
             await TenantManager.DeleteAsync(tenant);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<GetTenantFeaturesForEditOutput> GetTenantFeaturesForEdit(EntityDto input)
         {
             var features = FeatureManager.GetAll();
@@ -87,17 +101,23 @@ namespace YT.MultiTenancy
                 FeatureValues = featureValues.Select(fv => new NameValueDto(fv)).ToList()
             };
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task UpdateTenantFeatures(UpdateTenantFeaturesInput input)
         {
             await TenantManager.SetFeatureValuesAsync(input.Id, input.FeatureValues.Select(fv => new NameValue(fv.Name, fv.Value)).ToArray());
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task ResetTenantSpecificFeatures(EntityDto input)
         {
             await TenantManager.ResetAllFeaturesAsync(input.Id);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task UnlockTenantAdmin(EntityDto input)
         {
             using (CurrentUnitOfWork.SetTenantId(input.Id))

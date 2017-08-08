@@ -3,9 +3,15 @@ using Abp.Extensions;
 using System.Linq;
 
 namespace YT.Auditing
-{
+{/// <summary>
+/// 命名空间处理
+/// </summary>
     public class NamespaceStripper : INamespaceStripper, ITransientDependency
-    {
+    {/// <summary>
+    /// 
+    /// </summary>
+    /// <param name="serviceName"></param>
+    /// <returns></returns>
         public string StripNameSpace(string serviceName)
         {
             if (serviceName.IsNullOrEmpty() || !serviceName.Contains("."))

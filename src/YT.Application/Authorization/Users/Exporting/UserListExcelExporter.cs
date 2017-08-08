@@ -8,12 +8,18 @@ using YT.DataExporting.Excel.EpPlus;
 using YT.Dto;
 
 namespace YT.Authorization.Users.Exporting
-{
+{/// <summary>
+/// 
+/// </summary>
     public class UserListExcelExporter : EpPlusExcelExporterBase, IUserListExcelExporter
     {
         private readonly ITimeZoneConverter _timeZoneConverter;
         private readonly IAbpSession _abpSession;
-
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="timeZoneConverter"></param>
+        /// <param name="abpSession"></param>
         public UserListExcelExporter(
             ITimeZoneConverter timeZoneConverter, 
             IAbpSession abpSession)
@@ -21,7 +27,11 @@ namespace YT.Authorization.Users.Exporting
             _timeZoneConverter = timeZoneConverter;
             _abpSession = abpSession;
         }
-
+        /// <summary>
+        /// 导出用户信息
+        /// </summary>
+        /// <param name="userListDtos"></param>
+        /// <returns></returns>
         public FileDto ExportToFile(List<UserListDto> userListDtos)
         {
             return CreateExcelPackage(

@@ -18,6 +18,9 @@ using YT.Managers.Users;
 
 namespace YT.Authorization.Users
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [AbpAuthorize]
     public class UserLinkAppService : YtAppServiceBase, IUserLinkAppService
     {
@@ -26,7 +29,14 @@ namespace YT.Authorization.Users
         private readonly IRepository<Tenant> _tenantRepository;
         private readonly IRepository<UserAccount, long> _userAccountRepository;
         private readonly LogInManager _logInManager;
-
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="abpLoginResultTypeHelper"></param>
+        /// <param name="userLinkManager"></param>
+        /// <param name="tenantRepository"></param>
+        /// <param name="userAccountRepository"></param>
+        /// <param name="logInManager"></param>
         public UserLinkAppService(
             AbpLoginResultTypeHelper abpLoginResultTypeHelper,
             IUserLinkManager userLinkManager,
@@ -40,7 +50,11 @@ namespace YT.Authorization.Users
             _userAccountRepository = userAccountRepository;
             _logInManager = logInManager;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task LinkToUser(LinkToUserInput input)
         {
             var loginResult = await _logInManager.LoginAsync(input.UsernameOrEmailAddress, input.Password, input.TenancyName);
@@ -62,7 +76,11 @@ namespace YT.Authorization.Users
 
             await _userLinkManager.Link(GetCurrentUser(), loginResult.User);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task<PagedResultDto<LinkedUserDto>> GetLinkedUsers(GetLinkedUsersInput input)
         {
             var currentUserAccount = await _userLinkManager.GetUserAccountAsync(AbpSession.ToUserIdentifier());
@@ -83,7 +101,10 @@ namespace YT.Authorization.Users
                 linkedUsers
             );
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [DisableAuditing]
         public async Task<ListResultDto<LinkedUserDto>> GetRecentlyUsedLinkedUsers()
         {
@@ -98,6 +119,11 @@ namespace YT.Authorization.Users
 
             return new ListResultDto<LinkedUserDto>(recentlyUsedlinkedUsers);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
 
         public async Task UnlinkUser(UnlinkUserInput input)
         {
@@ -115,6 +141,12 @@ namespace YT.Authorization.Users
 
             await _userLinkManager.Unlink(input.ToUserIdentifier());
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="currentUserAccount"></param>
+        /// <param name="sorting"></param>
+        /// <returns></returns>
 
         private IQueryable<LinkedUserDto> CreateLinkedUsersQuery(UserAccount currentUserAccount, string sorting)
         {

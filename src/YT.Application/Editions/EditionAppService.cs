@@ -12,16 +12,22 @@ using YT.Authorization;
 using YT.Editions.Dto;
 
 namespace YT.Editions
-{
+{/// <summary>
+ /// 
+ /// </summary>
     public class EditionAppService : YtAppServiceBase, IEditionAppService
     {
         private readonly EditionManager _editionManager;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public EditionAppService(EditionManager editionManager)
         {
             _editionManager = editionManager;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<ListResultDto<EditionListDto>> GetEditions()
         {
             var editions = await _editionManager.Editions.ToListAsync();
@@ -29,7 +35,9 @@ namespace YT.Editions
                 editions.MapTo<List<EditionListDto>>()
                 );
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<GetEditionForEditOutput> GetEditionForEdit(NullableIdDto input)
         {
             var features = FeatureManager.GetAll();
@@ -56,7 +64,9 @@ namespace YT.Editions
                 FeatureValues = featureValues.Select(fv => new NameValueDto(fv)).ToList()
             };
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task CreateOrUpdateEdition(CreateOrUpdateEditionDto input)
         {
             if (!input.Edition.Id.HasValue)
@@ -68,13 +78,17 @@ namespace YT.Editions
                 await UpdateEditionAsync(input);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task DeleteEdition(EntityDto input)
         {
             var edition = await _editionManager.GetByIdAsync(input.Id);
             await _editionManager.DeleteAsync(edition);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<List<ComboboxItemDto>> GetEditionComboboxItems(int? selectedEditionId = null)
         {
             var editions = await _editionManager.Editions.ToListAsync();
@@ -98,7 +112,9 @@ namespace YT.Editions
 
             return editionItems;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual async Task CreateEditionAsync(CreateOrUpdateEditionDto input)
         {
             var edition = new Edition(input.Edition.DisplayName);
@@ -108,7 +124,9 @@ namespace YT.Editions
 
             await SetFeatureValues(edition, input.FeatureValues);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual async Task UpdateEditionAsync(CreateOrUpdateEditionDto input)
         {
             Debug.Assert(input.Edition.Id != null, "input.Edition.Id should be set.");
@@ -118,7 +136,9 @@ namespace YT.Editions
 
             await SetFeatureValues(edition, input.FeatureValues);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private Task SetFeatureValues(Edition edition, List<NameValueDto> featureValues)
         {
             return _editionManager.SetFeatureValuesAsync(edition.Id, featureValues.Select(fv => new NameValue(fv.Name, fv.Value)).ToArray());

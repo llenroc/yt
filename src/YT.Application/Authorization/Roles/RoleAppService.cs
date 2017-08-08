@@ -21,12 +21,16 @@ namespace YT.Authorization.Roles
     public class RoleAppService : YtAppServiceBase, IRoleAppService
     {
         private readonly RoleManager _roleManager;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public RoleAppService(RoleManager roleManager)
         {
             _roleManager = roleManager;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<ListResultDto<RoleListDto>> GetRoles(GetRolesInput input)
         {
             var roles = await _roleManager
@@ -39,7 +43,9 @@ namespace YT.Authorization.Roles
 
             return new ListResultDto<RoleListDto>(roles.MapTo<List<RoleListDto>>());
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<GetRoleForEditOutput> GetRoleForEdit(NullableIdDto input)
         {
             var permissions = PermissionManager.GetAllPermissions();
@@ -64,7 +70,9 @@ namespace YT.Authorization.Roles
                 GrantedPermissionNames = grantedPermissions.Select(p => p.Name).ToList()
             };
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task CreateOrUpdateRole(CreateOrUpdateRoleInput input)
         {
             if (input.Role.Id.HasValue)
@@ -76,13 +84,17 @@ namespace YT.Authorization.Roles
                 await CreateRoleAsync(input);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task DeleteRole(EntityDto input)
         {
             var role = await _roleManager.GetRoleByIdAsync(input.Id);
             CheckErrors(await _roleManager.DeleteAsync(role));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual async Task UpdateRoleAsync(CreateOrUpdateRoleInput input)
         {
             Debug.Assert(input.Role.Id != null, "input.Role.Id should be set.");

@@ -16,14 +16,18 @@ using YT.Timing;
 using Newtonsoft.Json;
 
 namespace YT.Configuration.Host
-{
+{/// <summary>
+ /// 
+ /// </summary>
     public class HostSettingsAppService : YtAppServiceBase, IHostSettingsAppService
     {
         private readonly IEmailSender _emailSender;
         private readonly EditionManager _editionManager;
         private readonly ITimeZoneService _timeZoneService;
         readonly ISettingDefinitionManager _settingDefinitionManager;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public HostSettingsAppService(
             IEmailSender emailSender,
             EditionManager editionManager,
@@ -37,7 +41,9 @@ namespace YT.Configuration.Host
         }
 
         #region Get Settings
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<HostSettingsEditDto> GetAllSettings()
         {
             return new HostSettingsEditDto
@@ -149,7 +155,9 @@ namespace YT.Configuration.Host
         #endregion
 
         #region Update Settings
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task UpdateAllSettings(HostSettingsEditDto input)
         {
             await UpdateGeneralSettingsAsync(input.General);
@@ -257,7 +265,9 @@ namespace YT.Configuration.Host
         #endregion
 
         #region Send Test Email
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task SendTestEmail(SendTestEmailInput input)
         {
             await _emailSender.SendAsync(

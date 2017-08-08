@@ -13,13 +13,17 @@ using YT.Organizations.Dto;
 using System.Linq.Dynamic;
 
 namespace YT.Organizations
-{
+{/// <summary>
+ /// 
+ /// </summary>
     public class OrganizationUnitAppService : YtAppServiceBase, IOrganizationUnitAppService
     {
         private readonly OrganizationUnitManager _organizationUnitManager;
         private readonly IRepository<OrganizationUnit, long> _organizationUnitRepository;
         private readonly IRepository<UserOrganizationUnit, long> _userOrganizationUnitRepository;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public OrganizationUnitAppService(
             OrganizationUnitManager organizationUnitManager,
             IRepository<OrganizationUnit, long> organizationUnitRepository,
@@ -29,7 +33,9 @@ namespace YT.Organizations
             _organizationUnitRepository = organizationUnitRepository;
             _userOrganizationUnitRepository = userOrganizationUnitRepository;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<ListResultDto<OrganizationUnitDto>> GetOrganizationUnits()
         {
             var query =
@@ -47,7 +53,9 @@ namespace YT.Organizations
                     return dto;
                 }).ToList());
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<PagedResultDto<OrganizationUnitUserListDto>> GetOrganizationUnitUsers(GetOrganizationUnitUsersInput input)
         {
             var query = from uou in _userOrganizationUnitRepository.GetAll()
@@ -68,7 +76,9 @@ namespace YT.Organizations
                     return dto;
                 }).ToList());
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<OrganizationUnitDto> CreateOrganizationUnit(CreateOrganizationUnitInput input)
         {
             var organizationUnit = new OrganizationUnit(AbpSession.TenantId, input.DisplayName, input.ParentId);
@@ -78,7 +88,9 @@ namespace YT.Organizations
 
             return organizationUnit.MapTo<OrganizationUnitDto>();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<OrganizationUnitDto> UpdateOrganizationUnit(UpdateOrganizationUnitInput input)
         {
             var organizationUnit = await _organizationUnitRepository.GetAsync(input.Id);
@@ -89,7 +101,9 @@ namespace YT.Organizations
 
             return await CreateOrganizationUnitDto(organizationUnit);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<OrganizationUnitDto> MoveOrganizationUnit(MoveOrganizationUnitInput input)
         {
             await _organizationUnitManager.MoveAsync(input.Id, input.NewParentId);
@@ -98,22 +112,30 @@ namespace YT.Organizations
                 await _organizationUnitRepository.GetAsync(input.Id)
                 );
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task DeleteOrganizationUnit(EntityDto<long> input)
         {
             await _organizationUnitManager.DeleteAsync(input.Id);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task AddUserToOrganizationUnit(UserToOrganizationUnitInput input)
         {
             await UserManager.AddToOrganizationUnitAsync(input.UserId, input.OrganizationUnitId);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task RemoveUserFromOrganizationUnit(UserToOrganizationUnitInput input)
         {
             await UserManager.RemoveFromOrganizationUnitAsync(input.UserId, input.OrganizationUnitId);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<bool> IsInOrganizationUnit(UserToOrganizationUnitInput input)
         {
             return await UserManager.IsInOrganizationUnitAsync(input.UserId, input.OrganizationUnitId);

@@ -19,14 +19,18 @@ using YT.Timing;
 using Newtonsoft.Json;
 
 namespace YT.Configuration.Tenants
-{
+{/// <summary>
+ /// 
+ /// </summary>
     public class TenantSettingsAppService : YtAppServiceBase, ITenantSettingsAppService
     {
         private readonly IMultiTenancyConfig _multiTenancyConfig;
         private readonly IAbpZeroLdapModuleConfig _ldapModuleConfig;
         private readonly ITimeZoneService _timeZoneService;
         private readonly IBinaryObjectManager _binaryObjectManager;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public TenantSettingsAppService(
             IMultiTenancyConfig multiTenancyConfig,
             IAbpZeroLdapModuleConfig ldapModuleConfig,
@@ -40,7 +44,9 @@ namespace YT.Configuration.Tenants
         }
 
         #region Get Settings
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<TenantSettingsEditDto> GetAllSettings()
         {
             var settings = new TenantSettingsEditDto
@@ -192,7 +198,9 @@ namespace YT.Configuration.Tenants
         #endregion
 
         #region Update Settings
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task UpdateAllSettings(TenantSettingsEditDto input)
         {
             await UpdateUserManagementSettingsAsync(input.UserManagement);
@@ -323,7 +331,9 @@ namespace YT.Configuration.Tenants
         #endregion
 
         #region Others
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task ClearLogo()
         {
             var tenant = await GetCurrentTenantAsync();
@@ -341,7 +351,9 @@ namespace YT.Configuration.Tenants
 
             tenant.ClearLogo();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task ClearCustomCss()
         {
             var tenant = await GetCurrentTenantAsync();

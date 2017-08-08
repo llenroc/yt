@@ -5,10 +5,14 @@ using Abp.AutoMapper;
 using YT.Sessions.Dto;
 
 namespace YT.Sessions
-{
+{ /// <summary>
+  /// 
+  /// </summary>
     [AbpAuthorize]
     public class SessionAppService : YtAppServiceBase, ISessionAppService
-    {
+    { /// <summary>
+      /// 
+      /// </summary>
         [DisableAuditing]
         public async Task<GetCurrentLoginInformationsOutput> GetCurrentLoginInformations()
         {

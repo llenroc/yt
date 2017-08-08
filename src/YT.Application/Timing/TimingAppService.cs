@@ -7,22 +7,30 @@ using Abp.Configuration;
 using YT.Timing.Dto;
 
 namespace YT.Timing
-{
+{ /// <summary>
+  /// 
+  /// </summary>
     public class TimingAppService : YtAppServiceBase, ITimingAppService
     {
         private readonly ITimeZoneService _timeZoneService;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public TimingAppService(ITimeZoneService timeZoneService)
         {
             _timeZoneService = timeZoneService;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<ListResultDto<NameValueDto>> GetTimezones(GetTimezonesInput input)
         {
             var timeZones = await GetTimezoneInfos(input.DefaultTimezoneScope);
             return new ListResultDto<NameValueDto>(timeZones);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<List<ComboboxItemDto>> GetTimezoneComboboxItems(GetTimezoneComboboxItemsInput input)
         {
             var timeZones = await GetTimezoneInfos(input.DefaultTimezoneScope);
@@ -39,12 +47,14 @@ namespace YT.Timing
 
             return timeZoneItems;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private async Task<List<NameValueDto>> GetTimezoneInfos(SettingScopes defaultTimezoneScope)
         {
             var defaultTimezoneId = await _timeZoneService.GetDefaultTimezoneAsync(defaultTimezoneScope, AbpSession.TenantId);
             var defaultTimezone = TimeZoneInfo.FindSystemTimeZoneById(defaultTimezoneId);
-            var defaultTimezoneName = string.Format("{0} [{1}]", L("Default"), defaultTimezone.DisplayName);
+            var defaultTimezoneName = $"{L("Default")} [{defaultTimezone.DisplayName}]";
 
             var timeZones = TimeZoneInfo.GetSystemTimeZones()
                                         .Select(tz => new NameValueDto(tz.DisplayName, tz.Id))
