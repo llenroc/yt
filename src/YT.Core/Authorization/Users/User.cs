@@ -8,15 +8,15 @@ namespace YT.Authorization.Users
     /// <summary>
     /// Represents a user in the system.
     /// </summary>
-    public class User : AbpUser<User>
+    public sealed class User : AbpUser<User>
     {
         public const int MinPlainPasswordLength = 6;
 
         public const int MaxPhoneNumberLength = 24;
 
-        public virtual Guid? ProfilePictureId { get; set; }
+        public Guid? ProfilePictureId { get; set; }
 
-        public virtual bool ShouldChangePasswordOnNextLogin { get; set; }
+        public bool ShouldChangePasswordOnNextLogin { get; set; }
 
         //Can add application specific user properties here
 

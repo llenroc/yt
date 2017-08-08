@@ -2,6 +2,7 @@ using System.Linq;
 using Abp.Configuration;
 using Abp.Localization;
 using Abp.Net.Mail;
+using YT.Configuration;
 using YT.EntityFramework;
 
 namespace YT.Migrations.Seed.Host
@@ -17,12 +18,8 @@ namespace YT.Migrations.Seed.Host
 
         public void Create()
         {
-            //Emailing
-            AddSettingIfNotExists(EmailSettingNames.DefaultFromAddress, "admin@mydomain.com");
-            AddSettingIfNotExists(EmailSettingNames.DefaultFromDisplayName, "mydomain.com mailer");
-
-            //Languages
-            AddSettingIfNotExists(LocalizationSettingNames.DefaultLanguage, "en");
+            AddSettingIfNotExists(YtSettings.General.MenuDefaultActive, "true");
+            AddSettingIfNotExists(YtSettings.General.PermissionDefaultActive, "true");
         }
 
         private void AddSettingIfNotExists(string name, string value, int? tenantId = null)

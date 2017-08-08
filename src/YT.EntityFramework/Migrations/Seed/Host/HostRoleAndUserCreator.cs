@@ -28,23 +28,26 @@ namespace YT.Migrations.Seed.Host
         {
             //Admin role for host
 
-            var adminRoleForHost = _context.Roles.FirstOrDefault(r => r.TenantId == null && r.Name == StaticRoleNames.Host.Admin);
+            var adminRoleForHost = _context.Roles.FirstOrDefault(r => r.TenantId == null 
+            && r.Name == StaticRoleNames.Host.Admin);
             if (adminRoleForHost == null)
             {
-                adminRoleForHost = _context.Roles.Add(new Role(null, StaticRoleNames.Host.Admin, StaticRoleNames.Host.Admin) { IsStatic = true, IsDefault = true });
+                adminRoleForHost = _context.Roles.Add(new Role(null, 
+                    StaticRoleNames.Host.Admin, StaticRoleNames.Host.Admin) { IsStatic = true, IsDefault = true });
                 _context.SaveChanges();
             }
 
             //admin user for host
 
-            var adminUserForHost = _context.Users.FirstOrDefault(u => u.TenantId == null && u.UserName == User.AdminUserName);
+            var adminUserForHost = _context.Users.FirstOrDefault(u => u.TenantId == null
+            && u.UserName == AbpUserBase.AdminUserName);
             if (adminUserForHost == null)
             {
                 adminUserForHost = _context.Users.Add(
                     new User
                     {
                         TenantId = null,
-                        UserName = User.AdminUserName,
+                        UserName = AbpUserBase.AdminUserName,
                         Name = "admin",
                         Surname = "admin",
                         EmailAddress = "admin@aspnetzero.com",
@@ -60,10 +63,11 @@ namespace YT.Migrations.Seed.Host
                 _context.SaveChanges();
 
                 //Grant all permissions
-                var permissions = PermissionFinder
-                    .GetAllPermissions(new AppAuthorizationProvider(true))
-                    .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Host))
-                    .ToList();
+                var permissions = _context.YtPermissions;
+                    //PermissionFinder
+                    //.GetAllPermissions(new AppAuthorizationProvider(true))
+                    //.Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Host))
+                    //.ToList();
 
                 foreach (var permission in permissions)
                 {
@@ -84,7 +88,7 @@ namespace YT.Migrations.Seed.Host
                 {
                     TenantId = null,
                     UserId = adminUserForHost.Id,
-                    UserName = User.AdminUserName,
+                    UserName = AbpUserBase.AdminUserName,
                     EmailAddress = adminUserForHost.EmailAddress
                 });
 

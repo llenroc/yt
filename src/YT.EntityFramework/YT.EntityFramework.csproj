@@ -143,8 +143,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityFramework\YtDbContext.cs" />
-    <Compile Include="EntityFramework\Repositories\AbpZeroTemplateRepositoryBase.cs" />
+    <Compile Include="EntityFramework\Repositories\YtRepositoryBase.cs" />
     <Compile Include="EntityFramework\AbpZeroDbMigrator.cs" />
+    <Compile Include="Migrations\201708080620334_initdata.cs" />
+    <Compile Include="Migrations\201708080620334_initdata.Designer.cs">
+      <DependentUpon>201708080620334_initdata.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="YtDataModule.cs" />
     <Compile Include="Migrations\Seed\Host\DefaultEditionCreator.cs" />
@@ -169,6 +173,11 @@
       <Project>{6f11169f-136e-4b21-a03b-95696c0bce89}</Project>
       <Name>YT</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201708080620334_initdata.resx">
+      <DependentUpon>201708080620334_initdata.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

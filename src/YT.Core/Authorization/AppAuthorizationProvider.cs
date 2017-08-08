@@ -1,7 +1,11 @@
+using System.Linq;
 using Abp.Authorization;
 using Abp.Configuration.Startup;
+using Abp.Dependency;
+using Abp.Domain.Repositories;
 using Abp.Localization;
 using Abp.MultiTenancy;
+using YT.Authorizations;
 
 namespace YT.Authorization
 {
@@ -26,6 +30,8 @@ namespace YT.Authorization
 
         public override void SetPermissions(IPermissionDefinitionContext context)
         {
+            //var instance = IocManager.Instance.Resolve<IRepository<YtPermission>>();
+            //var list = instance.GetAllIncluding(c=>c.Children).AsQueryable();
             //COMMON PERMISSIONS (FOR BOTH OF TENANTS AND HOST)
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
