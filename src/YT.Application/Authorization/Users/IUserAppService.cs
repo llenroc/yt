@@ -58,11 +58,6 @@ namespace YT.Authorization.Users
         /// <param name="input"></param>
         /// <returns></returns>
         Task DeleteUser(EntityDto<long> input);
-        /// <summary>
-        /// ½âËø
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        Task UnlockUser(EntityDto<long> input);
+    
     }
 }

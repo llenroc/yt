@@ -20,6 +20,8 @@ namespace YT.Migrations.Seed.Host
         {
             AddSettingIfNotExists(YtSettings.General.MenuDefaultActive, "true");
             AddSettingIfNotExists(YtSettings.General.PermissionDefaultActive, "true");
+            AddSettingIfNotExists(YtSettings.General.RoleDefaultActive, "true");
+            AddSettingIfNotExists(YtSettings.General.UserDefaultActive, "true");
         }
 
         private void AddSettingIfNotExists(string name, string value, int? tenantId = null)

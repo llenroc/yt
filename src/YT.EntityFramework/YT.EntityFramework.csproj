@@ -145,13 +145,9 @@
     <Compile Include="EntityFramework\YtDbContext.cs" />
     <Compile Include="EntityFramework\Repositories\YtRepositoryBase.cs" />
     <Compile Include="EntityFramework\AbpZeroDbMigrator.cs" />
-    <Compile Include="Migrations\201708080620334_initdata.cs" />
-    <Compile Include="Migrations\201708080620334_initdata.Designer.cs">
-      <DependentUpon>201708080620334_initdata.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708080821491_awdawd.cs" />
-    <Compile Include="Migrations\201708080821491_awdawd.Designer.cs">
-      <DependentUpon>201708080821491_awdawd.cs</DependentUpon>
+    <Compile Include="Migrations\201708090130574_wwww.cs" />
+    <Compile Include="Migrations\201708090130574_wwww.Designer.cs">
+      <DependentUpon>201708090130574_wwww.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="YtDataModule.cs" />
@@ -179,11 +175,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708080620334_initdata.resx">
-      <DependentUpon>201708080620334_initdata.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708080821491_awdawd.resx">
-      <DependentUpon>201708080821491_awdawd.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708090130574_wwww.resx">
+      <DependentUpon>201708090130574_wwww.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

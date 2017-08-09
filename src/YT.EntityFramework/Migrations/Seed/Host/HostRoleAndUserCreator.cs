@@ -1,8 +1,12 @@
 using System.Linq;
+using Abp.Authorization;
 using Abp.Authorization.Roles;
 using Abp.Authorization.Users;
+using Abp.MultiTenancy;
 using YT.EntityFramework;
+using YT.Managers;
 using YT.Managers.Roles;
+using YT.Managers.Roles.RoleDefaults;
 using YT.Managers.Users;
 
 namespace YT.Migrations.Seed.Host
@@ -26,11 +30,11 @@ namespace YT.Migrations.Seed.Host
             //Admin role for host
 
             var adminRoleForHost = _context.Roles.FirstOrDefault(r => r.TenantId == null 
-            && r.Name == StaticRoleNames.Host.Admin);
+            && r.Name == StaticNames.Role.Admin);
             if (adminRoleForHost == null)
             {
-                adminRoleForHost = _context.Roles.Add(new Role(null, 
-                    StaticRoleNames.Host.Admin, StaticRoleNames.Host.Admin) { IsStatic = true, IsDefault = true });
+                adminRoleForHost = _context.Roles.Add(new Role(null,
+                    StaticNames.Role.Admin, StaticNames.Role.Admin) { IsStatic = true, IsDefault = true });
                 _context.SaveChanges();
             }
 
@@ -60,11 +64,11 @@ namespace YT.Migrations.Seed.Host
                 _context.SaveChanges();
 
                 //Grant all permissions
-                var permissions = _context.YtPermissions;
-                    //PermissionFinder
-                    //.GetAllPermissions(new AppAuthorizationProvider(true))
-                    //.Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Host))
-                    //.ToList();
+                var permissions = //_context.YtPermissions;
+                    PermissionFinder
+                    .GetAllPermissions(new AppAuthorizationProvider(true))
+                    .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Host))
+                    .ToList();
 
                 foreach (var permission in permissions)
                 {

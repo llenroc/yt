@@ -74,7 +74,7 @@ namespace YT.Navigations
                 if (menu.Id == default(int))
                 {
 
-                    var defaultactive = _settingManager.GetSettingValueForApplication<bool>(YtSettings.General.MenuDefaultActive);
+                    var defaultactive = true;// _settingManager.GetSettingValueForApplication<bool>(YtSettings.General.MenuDefaultActive);
                     menu.IsActive = defaultactive;
                     _levelEntityHandler.Create(menu);
                 }

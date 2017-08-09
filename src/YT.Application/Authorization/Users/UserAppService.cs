@@ -92,8 +92,8 @@ namespace YT.Authorization.Users
                     u =>
                         u.Name.Contains(input.Filter) ||
                         u.Surname.Contains(input.Filter) ||
-                        u.UserName.Contains(input.Filter) ||
-                        u.EmailAddress.Contains(input.Filter)
+                        u.UserName.Contains(input.Filter) 
+                       // ||  u.EmailAddress.Contains(input.Filter)
                 );
 
             if (!input.Permission.IsNullOrWhiteSpace())
@@ -264,16 +264,7 @@ namespace YT.Authorization.Users
             var user = await UserManager.GetUserByIdAsync(input.Id);
             CheckErrors(await UserManager.DeleteAsync(user));
         }
-        /// <summary>
-        /// 解锁用户
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        public async Task UnlockUser(EntityDto<long> input)
-        {
-            var user = await UserManager.GetUserByIdAsync(input.Id);
-            user.Unlock();
-        }
+      
         /// <summary>
         /// 更新用户
         /// </summary>
@@ -302,12 +293,6 @@ namespace YT.Authorization.Users
 
             //Update roles
             CheckErrors(await UserManager.SetRoles(user, input.AssignedRoleNames));
-
-            if (input.SendActivationEmail)
-            {
-                user.SetNewEmailConfirmationCode();
-                await _userEmailer.SendEmailActivationLinkAsync(user, input.User.Password);
-            }
         }
         /// <summary>
         /// 创建用户
@@ -335,7 +320,7 @@ namespace YT.Authorization.Users
             }
 
             user.Password = new PasswordHasher().HashPassword(input.User.Password);
-            user.ShouldChangePasswordOnNextLogin = input.User.ShouldChangePasswordOnNextLogin;
+         //   user.ShouldChangePasswordOnNextLogin = input.User.ShouldChangePasswordOnNextLogin;
 
             //Assign roles
             user.Roles = new Collection<UserRole>();
@@ -349,15 +334,10 @@ namespace YT.Authorization.Users
             await CurrentUnitOfWork.SaveChangesAsync(); //To get new user's Id.
 
             //Notifications
-            await _notificationSubscriptionManager.SubscribeToAllAvailableNotificationsAsync(user.ToUserIdentifier());
+          //  await _notificationSubscriptionManager.SubscribeToAllAvailableNotificationsAsync(user.ToUserIdentifier());
             await _appNotifier.WelcomeToTheApplicationAsync(user);
 
-            //Send activation email
-            if (input.SendActivationEmail)
-            {
-                user.SetNewEmailConfirmationCode();
-                await _userEmailer.SendEmailActivationLinkAsync(user, input.User.Password);
-            }
+         
         }
         /// <summary>
         /// 获取角色名

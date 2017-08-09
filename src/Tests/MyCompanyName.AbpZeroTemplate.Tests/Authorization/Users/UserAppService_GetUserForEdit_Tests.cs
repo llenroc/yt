@@ -7,6 +7,7 @@ using YT.Authorization.Users;
 using Shouldly;
 using Xunit;
 using YT.Managers.Roles;
+using YT.Managers.Roles.RoleDefaults;
 using YT.Managers.Users;
 
 namespace YT.Tests.Authorization.Users
@@ -28,8 +29,8 @@ namespace YT.Tests.Authorization.Users
             output.User.Password.ShouldBe(null);
 
             output.Roles.Length.ShouldBe(1);
-            output.Roles.Any(r => r.RoleName == StaticRoleNames.Host.Admin).ShouldBe(true);
-            output.Roles.Single(r => r.RoleName == StaticRoleNames.Host.Admin).IsAssigned.ShouldBe(true);
+            output.Roles.Any(r => r.RoleName == StaticNames.Role.Admin).ShouldBe(true);
+            output.Roles.Single(r => r.RoleName == StaticNames.Role.Admin).IsAssigned.ShouldBe(true);
         }
 
         [Fact]
@@ -54,7 +55,7 @@ namespace YT.Tests.Authorization.Users
             managerRoleDto.RoleId.ShouldBe(managerRole.Id);
             managerRoleDto.IsAssigned.ShouldBe(false);
 
-            var adminRoleDto = output.Roles.FirstOrDefault(r => r.RoleName == StaticRoleNames.Tenants.Admin);
+            var adminRoleDto = output.Roles.FirstOrDefault(r => r.RoleName == StaticNames.Role.Admin);
             adminRoleDto.ShouldNotBe(null);
             adminRoleDto.IsAssigned.ShouldBe(true);
         }

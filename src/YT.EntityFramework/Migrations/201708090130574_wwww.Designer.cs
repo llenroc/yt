@@ -7,13 +7,13 @@ namespace YT.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class awdawd : IMigrationMetadata
+    public sealed partial class wwww : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(awdawd));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(wwww));
         
         string IMigrationMetadata.Id
         {
-            get { return "201708080821491_awdawd"; }
+            get { return "201708090130574_wwww"; }
         }
         
         string IMigrationMetadata.Source

@@ -116,6 +116,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Linq.Dynamic.Core, Version=0.0.0.0, Culture=neutral, PublicKeyToken=0f07ec44de6ac832, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Linq.Dynamic.Core.1.0.7.3\lib\net46\System.Linq.Dynamic.Core.dll</HintPath>
@@ -143,14 +144,17 @@
     <Compile Include="Managers\Impersonation\ImpersonationCacheItem.cs" />
     <Compile Include="Managers\Impersonation\ImpersonationCacheManagerExtensions.cs" />
     <Compile Include="Managers\MultiTenancy\Tenant.cs" />
+    <Compile Include="Managers\Roles\RoleDefaults\AdminRoleProvider.cs" />
+    <Compile Include="Managers\Roles\RoleDefaults\StaticNames.cs" />
     <Compile Include="Managers\Roles\RoleDefinition.cs" />
     <Compile Include="Managers\Roles\RoleDefinitionManager.cs" />
     <Compile Include="Managers\Roles\RoleProvider.cs" />
     <Compile Include="Managers\Roles\Startup\RoleConfiguration.cs" />
     <Compile Include="Managers\Roles\Role.cs" />
-    <Compile Include="Managers\Roles\StaticRoleNames.cs" />
     <Compile Include="Managers\Users\Startup\UserConfiguration.cs" />
     <Compile Include="Managers\Users\User.cs" />
+    <Compile Include="Managers\Users\UserDefaults\AdminUserProvider.cs" />
+    <Compile Include="Managers\Users\UserDefinition.cs" />
     <Compile Include="Managers\Users\UserDefinitionManager.cs" />
     <Compile Include="Managers\Users\UserProvider.cs" />
     <Compile Include="ModuleConfig.cs" />
@@ -172,6 +176,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

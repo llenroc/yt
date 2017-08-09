@@ -10,6 +10,12 @@ using YT.Authorizations.PermissionDefault;
 using YT.Authorizations.Startup;
 using YT.Configuration;
 using YT.Handlers;
+using YT.Managers.Roles;
+using YT.Managers.Roles.RoleDefaults;
+using YT.Managers.Roles.Startup;
+using YT.Managers.Users;
+using YT.Managers.Users.Startup;
+using YT.Managers.Users.UserDefaults;
 using YT.Navigations;
 using YT.Navigations.MenuDefault;
 using YT.Navigations.Startup;
@@ -24,8 +30,8 @@ namespace YT
            // IocManager.Register<ISettingsConfiguration, SettingsConfiguration>();
           //  IocManager.Register<IDictionaryConfiguration, DictionarysConfiguration>();
             IocManager.Register<IMenuConfiguration, MenuConfiguration>();
-          //  IocManager.Register<IRoleConfiguration, RoleConfiguration>();
-          //  IocManager.Register<IUserConfiguration, UserConfiguration>();
+            IocManager.Register<IRoleConfiguration, RoleConfiguration>();
+            IocManager.Register<IUserConfiguration, UserConfiguration>();
             IocManager.Register<IPermissionConfiguration, PermissionConfiguration>();
             IocManager.Register<IModuleConfig, ModuleConfig>();
           //  IocManager.Register<IPostConfiguration, PostConfiguration>();
@@ -39,8 +45,8 @@ namespace YT
           //  Configuration.Modules.MyModule().Settings.Providers.Add(typeof(YtSettingProvider));
             Configuration.Modules.MyModule().Menus.Providers.Add(typeof(AdminMenuProvider));
             Configuration.Modules.MyModule().Permissions.Providers.Add(typeof(AdminPermissionProvider));
-            //   Configuration.Modules.MyModule().Roles.Providers.Add(typeof(YTRoleProvider));
-            //  Configuration.Modules.MyModule().Users.Providers.Add(typeof(YTUserProvider));
+               Configuration.Modules.MyModule().Roles.Providers.Add(typeof(AdminRoleProvider));
+              Configuration.Modules.MyModule().Users.Providers.Add(typeof(AdminUserProvider));
 
             IocManager.IocContainer.Register(Component.For(typeof(ILevelEntityHandler<>))
                 .ImplementedBy(typeof(LevelEntityHandler<>)));
@@ -52,6 +58,8 @@ namespace YT
         {
            IocManager.Resolve<IMenuDefinitionManager>().Initialize();
            IocManager.Resolve<IPermissionDefinitionManager>().Initialize();
+           IocManager.Resolve<IRoleDefinitionManager>().Initialize();
+           IocManager.Resolve<IUserDefinitionManager>().Initialize();
         }
 
     }

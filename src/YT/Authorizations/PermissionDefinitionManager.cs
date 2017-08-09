@@ -59,10 +59,10 @@ namespace YT.Authorizations
                 menu.ParentId = definition.ParentId;
                 menu.Name = definition.Name;
                 menu.IsStatic = true;
-
                 if (menu.Id == default(int))
                 {
-                    var defaultactive = _settingManager.GetSettingValueForApplication<bool>(YtSettings.General.PermissionDefaultActive);
+
+                    var defaultactive = true;// _settingManager.GetSettingValueForApplication<bool>(YtSettings.General.PermissionDefaultActive);
                     menu.IsActive = defaultactive;
                     _levelEntityHandler.Create(menu);
                 }

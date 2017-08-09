@@ -1,11 +1,12 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Authorization.Roles;
+using Abp.Domain.Entities;
 using YT.Managers.Users;
 
 namespace YT.Managers.Roles
 {
   [Table("yt_roles")]
-    public class Role : AbpRole<User>
+    public class Role : AbpRole<User>,IPassivable
     {
         //Can add application specific role properties here
 
@@ -25,5 +26,7 @@ namespace YT.Managers.Roles
         {
 
         }
+
+        public bool IsActive { get; set; }
     }
 }

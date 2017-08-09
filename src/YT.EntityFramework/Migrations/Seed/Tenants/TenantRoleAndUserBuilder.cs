@@ -6,6 +6,7 @@ using Abp.MultiTenancy;
 using YT.EntityFramework;
 using YT.Managers;
 using YT.Managers.Roles;
+using YT.Managers.Roles.RoleDefaults;
 using YT.Managers.Users;
 
 namespace YT.Migrations.Seed.Tenants
@@ -30,10 +31,10 @@ namespace YT.Migrations.Seed.Tenants
         {
             //Admin role
 
-            var adminRole = _context.Roles.FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticRoleNames.Tenants.Admin);
+            var adminRole = _context.Roles.FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticNames.Role.Admin);
             if (adminRole == null)
             {
-                adminRole = _context.Roles.Add(new Role(_tenantId, StaticRoleNames.Tenants.Admin, StaticRoleNames.Tenants.Admin) { IsStatic = true });
+                adminRole = _context.Roles.Add(new Role(_tenantId, StaticNames.Role.Admin, StaticNames.Role.Admin) { IsStatic = true });
                 _context.SaveChanges();
 
                 //Grant all permissions to admin role
@@ -59,10 +60,10 @@ namespace YT.Migrations.Seed.Tenants
 
             //User role
 
-            var userRole = _context.Roles.FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticRoleNames.Tenants.User);
+            var userRole = _context.Roles.FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticNames.Role.Default);
             if (userRole == null)
             {
-                _context.Roles.Add(new Role(_tenantId, StaticRoleNames.Tenants.User, StaticRoleNames.Tenants.User) { IsStatic = true, IsDefault = true });
+                _context.Roles.Add(new Role(_tenantId, StaticNames.Role.Default, StaticNames.Role.Default) { IsStatic = true, IsDefault = true });
                 _context.SaveChanges();
             }
 

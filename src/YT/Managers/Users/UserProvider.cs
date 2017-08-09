@@ -15,6 +15,6 @@ namespace YT.Managers.Users
         /// 获取此提供程序所提供的所有角色定义。
         /// </summary>
         /// <returns>List of settings</returns>
-        public abstract IEnumerable<RoleDefinition> GetUserDefinitions(UserDefinitionProviderContext context);
+        public abstract IEnumerable<UserDefinition> GetUserDefinitions(UserDefinitionProviderContext context);
     }
 }

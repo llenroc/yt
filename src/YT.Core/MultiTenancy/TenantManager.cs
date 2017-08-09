@@ -14,6 +14,7 @@ using Abp.Runtime.Security;
 using YT.Editions;
 using YT.Managers.MultiTenancy;
 using YT.Managers.Roles;
+using YT.Managers.Roles.RoleDefaults;
 using YT.Managers.Users;
 using YT.Notifications;
 
@@ -88,11 +89,11 @@ namespace YT.MultiTenancy
                     await _unitOfWorkManager.Current.SaveChangesAsync(); //To get static role ids
 
                     //grant all permissions to admin role
-                    var adminRole = _roleManager.Roles.Single(r => r.Name == StaticRoleNames.Tenants.Admin);
+                    var adminRole = _roleManager.Roles.Single(r => r.Name == StaticNames.Role.Admin);
                     await _roleManager.GrantAllPermissionsAsync(adminRole);
 
                     //User role should be default
-                    var userRole = _roleManager.Roles.Single(r => r.Name == StaticRoleNames.Tenants.User);
+                    var userRole = _roleManager.Roles.Single(r => r.Name == StaticNames.Role.Default);
                     userRole.IsDefault = true;
                     CheckErrors(await _roleManager.UpdateAsync(userRole));
 

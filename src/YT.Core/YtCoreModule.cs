@@ -30,11 +30,11 @@ namespace YT
         public override void PreInitialize()
         {
           //  IocManager.RegisterIfNot<IChatCommunicator, NullChatCommunicator>();
-            if (DebugHelper.IsDebug)
-            {
-                //Disabling email sending in debug mode
-                IocManager.Register<IEmailSender, NullEmailSender>(DependencyLifeStyle.Transient);
-            }
+            //if (DebugHelper.IsDebug)
+            //{
+            //    //Disabling email sending in debug mode
+            //    IocManager.Register<IEmailSender, NullEmailSender>(DependencyLifeStyle.Transient);
+            //}
         }
 
         public override void Initialize()

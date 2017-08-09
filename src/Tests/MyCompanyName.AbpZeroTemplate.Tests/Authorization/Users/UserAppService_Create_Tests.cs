@@ -10,6 +10,7 @@ using Shouldly;
 using Xunit;
 using YT.Managers.MultiTenancy;
 using YT.Managers.Roles;
+using YT.Managers.Roles.RoleDefaults;
 
 namespace YT.Tests.Authorization.Users
 {
@@ -21,7 +22,7 @@ namespace YT.Tests.Authorization.Users
             LoginAsHostAdmin();
 
             await CreateUserAndTestAsync("jnash", "John", "Nash", "jnsh2000@testdomain.com", null);
-            await CreateUserAndTestAsync("adams_d", "Douglas", "Adams", "adams_d@gmail.com", null, StaticRoleNames.Host.Admin);
+            await CreateUserAndTestAsync("adams_d", "Douglas", "Adams", "adams_d@gmail.com", null, StaticNames.User.Admin);
         }
 
         [Fact]
@@ -29,7 +30,7 @@ namespace YT.Tests.Authorization.Users
         {
             var defaultTenantId = (await GetTenantAsync(Tenant.DefaultTenantName)).Id;
             await CreateUserAndTestAsync("jnash", "John", "Nash", "jnsh2000@testdomain.com", defaultTenantId);
-            await CreateUserAndTestAsync("adams_d", "Douglas", "Adams", "adams_d@gmail.com", defaultTenantId, StaticRoleNames.Tenants.Admin);
+            await CreateUserAndTestAsync("adams_d", "Douglas", "Adams", "adams_d@gmail.com", defaultTenantId, StaticNames.User.Admin);
         }
 
         [Fact]

@@ -5,7 +5,7 @@ namespace YT.Migrations
     using System.Data.Entity.Infrastructure.Annotations;
     using System.Data.Entity.Migrations;
     
-    public partial class initdata : DbMigration
+    public partial class wwww : DbMigration
     {
         public override void Up()
         {
@@ -258,16 +258,17 @@ namespace YT.Migrations
                     { "DynamicFilter_UserPermissionSetting_MayHaveTenant", "EntityFramework.DynamicFilters.DynamicFilterDefinition" },
                 })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AbpUsers", t => t.UserId, cascadeDelete: true)
-                .ForeignKey("dbo.AbpRoles", t => t.RoleId, cascadeDelete: true)
+                .ForeignKey("dbo.yt_users", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.yt_roles", t => t.RoleId, cascadeDelete: true)
                 .Index(t => t.RoleId)
                 .Index(t => t.UserId);
             
             CreateTable(
-                "dbo.AbpRoles",
+                "dbo.yt_roles",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        IsActive = c.Boolean(nullable: false),
                         TenantId = c.Int(),
                         Name = c.String(nullable: false, maxLength: 32),
                         DisplayName = c.String(nullable: false, maxLength: 64),
@@ -287,15 +288,15 @@ namespace YT.Migrations
                     { "DynamicFilter_Role_SoftDelete", "EntityFramework.DynamicFilters.DynamicFilterDefinition" },
                 })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AbpUsers", t => t.CreatorUserId)
-                .ForeignKey("dbo.AbpUsers", t => t.DeleterUserId)
-                .ForeignKey("dbo.AbpUsers", t => t.LastModifierUserId)
+                .ForeignKey("dbo.yt_users", t => t.CreatorUserId)
+                .ForeignKey("dbo.yt_users", t => t.DeleterUserId)
+                .ForeignKey("dbo.yt_users", t => t.LastModifierUserId)
                 .Index(t => t.DeleterUserId)
                 .Index(t => t.LastModifierUserId)
                 .Index(t => t.CreatorUserId);
             
             CreateTable(
-                "dbo.AbpUsers",
+                "dbo.yt_users",
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
@@ -334,9 +335,9 @@ namespace YT.Migrations
                     { "DynamicFilter_User_SoftDelete", "EntityFramework.DynamicFilters.DynamicFilterDefinition" },
                 })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AbpUsers", t => t.CreatorUserId)
-                .ForeignKey("dbo.AbpUsers", t => t.DeleterUserId)
-                .ForeignKey("dbo.AbpUsers", t => t.LastModifierUserId)
+                .ForeignKey("dbo.yt_users", t => t.CreatorUserId)
+                .ForeignKey("dbo.yt_users", t => t.DeleterUserId)
+                .ForeignKey("dbo.yt_users", t => t.LastModifierUserId)
                 .Index(t => t.DeleterUserId)
                 .Index(t => t.LastModifierUserId)
                 .Index(t => t.CreatorUserId);
@@ -358,7 +359,7 @@ namespace YT.Migrations
                     { "DynamicFilter_UserClaim_MayHaveTenant", "EntityFramework.DynamicFilters.DynamicFilterDefinition" },
                 })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AbpUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.yt_users", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
             CreateTable(
@@ -376,7 +377,7 @@ namespace YT.Migrations
                     { "DynamicFilter_UserLogin_MayHaveTenant", "EntityFramework.DynamicFilters.DynamicFilterDefinition" },
                 })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AbpUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.yt_users", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
             CreateTable(
@@ -395,7 +396,7 @@ namespace YT.Migrations
                     { "DynamicFilter_UserRole_MayHaveTenant", "EntityFramework.DynamicFilters.DynamicFilterDefinition" },
                 })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AbpUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.yt_users", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
             CreateTable(
@@ -417,7 +418,7 @@ namespace YT.Migrations
                     { "DynamicFilter_Setting_MayHaveTenant", "EntityFramework.DynamicFilters.DynamicFilterDefinition" },
                 })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AbpUsers", t => t.UserId)
+                .ForeignKey("dbo.yt_users", t => t.UserId)
                 .Index(t => t.UserId);
             
             CreateTable(
@@ -468,10 +469,10 @@ namespace YT.Migrations
                     { "DynamicFilter_Tenant_SoftDelete", "EntityFramework.DynamicFilters.DynamicFilterDefinition" },
                 })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AbpUsers", t => t.CreatorUserId)
-                .ForeignKey("dbo.AbpUsers", t => t.DeleterUserId)
+                .ForeignKey("dbo.yt_users", t => t.CreatorUserId)
+                .ForeignKey("dbo.yt_users", t => t.DeleterUserId)
                 .ForeignKey("dbo.AbpEditions", t => t.EditionId)
-                .ForeignKey("dbo.AbpUsers", t => t.LastModifierUserId)
+                .ForeignKey("dbo.yt_users", t => t.LastModifierUserId)
                 .Index(t => t.EditionId)
                 .Index(t => t.DeleterUserId)
                 .Index(t => t.LastModifierUserId)
@@ -585,22 +586,22 @@ namespace YT.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.yt_permission", "ParentId", "dbo.yt_permission");
-            DropForeignKey("dbo.AbpTenants", "LastModifierUserId", "dbo.AbpUsers");
+            DropForeignKey("dbo.AbpTenants", "LastModifierUserId", "dbo.yt_users");
             DropForeignKey("dbo.AbpTenants", "EditionId", "dbo.AbpEditions");
-            DropForeignKey("dbo.AbpTenants", "DeleterUserId", "dbo.AbpUsers");
-            DropForeignKey("dbo.AbpTenants", "CreatorUserId", "dbo.AbpUsers");
-            DropForeignKey("dbo.AbpPermissions", "RoleId", "dbo.AbpRoles");
-            DropForeignKey("dbo.AbpRoles", "LastModifierUserId", "dbo.AbpUsers");
-            DropForeignKey("dbo.AbpRoles", "DeleterUserId", "dbo.AbpUsers");
-            DropForeignKey("dbo.AbpRoles", "CreatorUserId", "dbo.AbpUsers");
-            DropForeignKey("dbo.AbpSettings", "UserId", "dbo.AbpUsers");
-            DropForeignKey("dbo.AbpUserRoles", "UserId", "dbo.AbpUsers");
-            DropForeignKey("dbo.AbpPermissions", "UserId", "dbo.AbpUsers");
-            DropForeignKey("dbo.AbpUserLogins", "UserId", "dbo.AbpUsers");
-            DropForeignKey("dbo.AbpUsers", "LastModifierUserId", "dbo.AbpUsers");
-            DropForeignKey("dbo.AbpUsers", "DeleterUserId", "dbo.AbpUsers");
-            DropForeignKey("dbo.AbpUsers", "CreatorUserId", "dbo.AbpUsers");
-            DropForeignKey("dbo.AbpUserClaims", "UserId", "dbo.AbpUsers");
+            DropForeignKey("dbo.AbpTenants", "DeleterUserId", "dbo.yt_users");
+            DropForeignKey("dbo.AbpTenants", "CreatorUserId", "dbo.yt_users");
+            DropForeignKey("dbo.AbpPermissions", "RoleId", "dbo.yt_roles");
+            DropForeignKey("dbo.yt_roles", "LastModifierUserId", "dbo.yt_users");
+            DropForeignKey("dbo.yt_roles", "DeleterUserId", "dbo.yt_users");
+            DropForeignKey("dbo.yt_roles", "CreatorUserId", "dbo.yt_users");
+            DropForeignKey("dbo.AbpSettings", "UserId", "dbo.yt_users");
+            DropForeignKey("dbo.AbpUserRoles", "UserId", "dbo.yt_users");
+            DropForeignKey("dbo.AbpPermissions", "UserId", "dbo.yt_users");
+            DropForeignKey("dbo.AbpUserLogins", "UserId", "dbo.yt_users");
+            DropForeignKey("dbo.yt_users", "LastModifierUserId", "dbo.yt_users");
+            DropForeignKey("dbo.yt_users", "DeleterUserId", "dbo.yt_users");
+            DropForeignKey("dbo.yt_users", "CreatorUserId", "dbo.yt_users");
+            DropForeignKey("dbo.AbpUserClaims", "UserId", "dbo.yt_users");
             DropForeignKey("dbo.AbpOrganizationUnits", "ParentId", "dbo.AbpOrganizationUnits");
             DropForeignKey("dbo.yt_menu", "ParentId", "dbo.yt_menu");
             DropForeignKey("dbo.AbpFeatures", "EditionId", "dbo.AbpEditions");
@@ -616,12 +617,12 @@ namespace YT.Migrations
             DropIndex("dbo.AbpUserRoles", new[] { "UserId" });
             DropIndex("dbo.AbpUserLogins", new[] { "UserId" });
             DropIndex("dbo.AbpUserClaims", new[] { "UserId" });
-            DropIndex("dbo.AbpUsers", new[] { "CreatorUserId" });
-            DropIndex("dbo.AbpUsers", new[] { "LastModifierUserId" });
-            DropIndex("dbo.AbpUsers", new[] { "DeleterUserId" });
-            DropIndex("dbo.AbpRoles", new[] { "CreatorUserId" });
-            DropIndex("dbo.AbpRoles", new[] { "LastModifierUserId" });
-            DropIndex("dbo.AbpRoles", new[] { "DeleterUserId" });
+            DropIndex("dbo.yt_users", new[] { "CreatorUserId" });
+            DropIndex("dbo.yt_users", new[] { "LastModifierUserId" });
+            DropIndex("dbo.yt_users", new[] { "DeleterUserId" });
+            DropIndex("dbo.yt_roles", new[] { "CreatorUserId" });
+            DropIndex("dbo.yt_roles", new[] { "LastModifierUserId" });
+            DropIndex("dbo.yt_roles", new[] { "DeleterUserId" });
             DropIndex("dbo.AbpPermissions", new[] { "UserId" });
             DropIndex("dbo.AbpPermissions", new[] { "RoleId" });
             DropIndex("dbo.AbpOrganizationUnits", new[] { "ParentId" });
@@ -680,13 +681,13 @@ namespace YT.Migrations
                 {
                     { "DynamicFilter_UserClaim_MayHaveTenant", "EntityFramework.DynamicFilters.DynamicFilterDefinition" },
                 });
-            DropTable("dbo.AbpUsers",
+            DropTable("dbo.yt_users",
                 removedAnnotations: new Dictionary<string, object>
                 {
                     { "DynamicFilter_User_MayHaveTenant", "EntityFramework.DynamicFilters.DynamicFilterDefinition" },
                     { "DynamicFilter_User_SoftDelete", "EntityFramework.DynamicFilters.DynamicFilterDefinition" },
                 });
-            DropTable("dbo.AbpRoles",
+            DropTable("dbo.yt_roles",
                 removedAnnotations: new Dictionary<string, object>
                 {
                     { "DynamicFilter_Role_MayHaveTenant", "EntityFramework.DynamicFilters.DynamicFilterDefinition" },

@@ -1,23 +1,17 @@
 using System.Reflection;
 using System.Web;
-using System.Web.Mvc;
-using System.Web.Optimization;
 using System.Web.Routing;
 using Abp;
 using Abp.Configuration.Startup;
 using Abp.Hangfire;
-using Abp.Hangfire.Configuration;
 using Abp.IO;
 using Abp.Modules;
 using Abp.Runtime.Caching.Redis;
-using Abp.Timing;
 using Abp.Web.Mvc;
 using Abp.Web.SignalR;
 using Abp.Zero.Configuration;
 using Castle.MicroKernel.Registration;
-using Hangfire;
 using Microsoft.Owin.Security;
-using YT.Web.Bundling;
 using YT.Web.Routing;
 using YT.WebApi;
 
@@ -48,7 +42,7 @@ namespace YT.Web
           //  Configuration.Navigation.Providers.Add<FrontEndNavigationProvider>();
          //   Configuration.Navigation.Providers.Add<MpaNavigationProvider>();//MPA!
 
-            Configuration.Modules.AbpWebCommon().MultiTenancy.DomainFormat = WebUrlService.WebSiteRootAddress;
+          //  Configuration.Modules.AbpWebCommon().MultiTenancy.DomainFormat = WebUrlService.WebSiteRootAddress;
 
             //Uncomment these lines to use HangFire as background job manager.
             //Configuration.BackgroundJobs.UseHangfire(configuration =>

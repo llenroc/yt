@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YT.Authorizations;
+using YT.Managers.Roles;
+using YT.Managers.Users;
 
 namespace YT.Navigations
 {
@@ -27,18 +29,18 @@ namespace YT.Navigations
     }
     public class RoleDefinitionProviderContext
     {
-        public IPermissionDefinitionManager Manager { get; private set; }
+        public IRoleDefinitionManager Manager { get; private set; }
 
-        internal RoleDefinitionProviderContext(IPermissionDefinitionManager manager)
+        internal RoleDefinitionProviderContext(IRoleDefinitionManager manager)
         {
             Manager = manager;
         }
     }
     public class UserDefinitionProviderContext
     {
-        public IPermissionDefinitionManager Manager { get; private set; }
+        public IUserDefinitionManager Manager { get; private set; }
 
-        internal UserDefinitionProviderContext(IPermissionDefinitionManager manager)
+        internal UserDefinitionProviderContext(IUserDefinitionManager manager)
         {
             Manager = manager;
         }
