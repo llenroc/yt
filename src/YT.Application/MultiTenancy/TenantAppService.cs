@@ -13,7 +13,6 @@ using Abp.Linq.Extensions;
 using Abp.Runtime.Security;
 using YT.Authorization;
 using YT.Authorization.Users;
-using YT.Editions.Dto;
 using YT.Managers.Users;
 using YT.MultiTenancy.Dto;
 
@@ -97,7 +96,7 @@ namespace YT.MultiTenancy
 
             return new GetTenantFeaturesForEditOutput
             {
-                Features = features.MapTo<List<FlatFeatureDto>>().OrderBy(f => f.DisplayName).ToList(),
+              //  Features = features.MapTo<List<FlatFeatureDto>>().OrderBy(f => f.DisplayName).ToList(),
                 FeatureValues = featureValues.Select(fv => new NameValueDto(fv)).ToList()
             };
         }

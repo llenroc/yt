@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using YT.Editions.Dto;
+using YT.MobileApp.Editions.Dto;
 
-namespace YT.Editions
+namespace YT.MobileApp.Editions
 {/// <summary>
 /// 
 /// </summary>

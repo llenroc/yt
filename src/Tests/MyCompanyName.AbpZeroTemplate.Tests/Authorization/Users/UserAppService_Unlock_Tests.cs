@@ -47,7 +47,7 @@ namespace YT.Tests.Authorization.Users
 
             //Act
 
-            await UserAppService.UnlockUser(new EntityDto<long>(user.Id));
+          //  await UserAppService.UnlockUser(new EntityDto<long>(user.Id));
 
             //Assert
 

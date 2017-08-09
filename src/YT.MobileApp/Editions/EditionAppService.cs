@@ -9,9 +9,10 @@ using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.AutoMapper;
 using YT.Authorization;
-using YT.Editions.Dto;
+using YT.Editions;
+using YT.MobileApp.Editions.Dto;
 
-namespace YT.Editions
+namespace YT.MobileApp.Editions
 {/// <summary>
  /// 
  /// </summary>

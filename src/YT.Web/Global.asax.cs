@@ -17,7 +17,7 @@ namespace YT.Web
         protected override void Application_Start(object sender, EventArgs e)
         {
             //Use UTC clock. Remove this to use local time for your application.
-            Clock.Provider = ClockProviders.Utc;
+            Clock.Provider = ClockProviders.Local;
 
             //Log4Net configuration
             AbpBootstrapper.IocManager.IocContainer
@@ -30,30 +30,10 @@ namespace YT.Web
 
         protected override void Session_Start(object sender, EventArgs e)
         {
-            RestoreUserLanguage();
+           // RestoreUserLanguage();
             base.Session_Start(sender, e);
         }
 
-        private void RestoreUserLanguage()
-        {
-            var settingManager = AbpBootstrapper.IocManager.Resolve<ISettingManager>();
-            var defaultLanguage = settingManager.GetSettingValue(LocalizationSettingNames.DefaultLanguage);
-
-            if (defaultLanguage.IsNullOrEmpty())
-            {
-                return;
-            }
-
-            try
-            {
-                CultureInfo.GetCultureInfo(defaultLanguage);
-                Response.Cookies.Add(new HttpCookie("Abp.Localization.CultureName", defaultLanguage) { Expires = Clock.Now.AddYears(2) });
-            }
-            catch (CultureNotFoundException exception)
-            {
-                LogHelper.Logger.Warn(exception.Message, exception);
-            }
-        }
 
         /* Preventing client side cache */
         private static readonly DateTime CacheExpireDate = new DateTime(2000, 1, 1);

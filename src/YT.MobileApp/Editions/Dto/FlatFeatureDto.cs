@@ -2,7 +2,7 @@ using Abp.Application.Features;
 using Abp.AutoMapper;
 using Abp.UI.Inputs;
 
-namespace YT.Editions.Dto
+namespace YT.MobileApp.Editions.Dto
 {/// <summary>
 /// 
 /// </summary>

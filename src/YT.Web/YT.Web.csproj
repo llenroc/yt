@@ -409,7 +409,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="log4net.config" />
-    <Content Include="RecaptchaNet.Readme.txt" />
     <Content Include="Views\Layout\_TenantCustomCss.cshtml" />
     <None Include="Properties\PublishProfiles\aspnetzero - Web Deploy.pubxml" />
     <Content Include="Web.config">
@@ -419,38 +418,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Layout\TenantCustomCssViewModel.cs" />
-    <Compile Include="App_Start\Bundling\CssRewriteUrlWithVirtualDirectoryTransform.cs" />
-    <Compile Include="App_Start\Bundling\AsIsBundleOrderer.cs" />
-    <Compile Include="App_Start\Bundling\BundleExtensions.cs" />
-    <Compile Include="App_Start\Bundling\CommonBundleConfig.cs" />
-    <Compile Include="App_Start\Bundling\FrontEndBundleConfig.cs" />
-    <Compile Include="App_Start\Bundling\ScriptPaths.cs" />
-    <Compile Include="App_Start\Bundling\StylePaths.cs" />
     <Compile Include="App_Start\YtWebModule.cs" />
     <Compile Include="App_Start\Routing\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Auth\AuthenticationManagerExtensions.cs" />
     <Compile Include="Auth\SignInManager.cs" />
-    <Compile Include="Auth\TwitterEmailRetriever.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\Results\ChallengeResult.cs" />
-    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FileController.cs" />
-    <Compile Include="Controllers\AboutController.cs" />
-    <Compile Include="Controllers\TenantCustomizationController.cs" />
-    <Compile Include="Controllers\TenantRegistrationController.cs" />
     <Compile Include="Helpers\ImageFormatHelper.cs" />
     <Compile Include="Models\Account\ImpersonateModel.cs" />
     <Compile Include="Models\Account\SendSecurityCodeViewModel.cs" />
     <Compile Include="Models\Account\SwitchToLinkedAccountModel.cs" />
     <Compile Include="Models\Account\TenantSelectionViewModel.cs" />
     <Compile Include="Models\Account\VerifySecurityCodeViewModel.cs" />
-    <Compile Include="Models\TenantRegistration\TenantRegisterResultViewModel.cs" />
-    <Compile Include="Models\TenantRegistration\TenantRegistrationViewModel.cs" />
     <Compile Include="MultiTenancy\ITenancyNameFinder.cs" />
-    <Compile Include="Controllers\LayoutController.cs" />
-    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="MultiTenancy\SubdomainTenancyNameFinder.cs" />
     <Compile Include="Models\Account\LanguagesViewModel.cs" />
     <Compile Include="Models\Account\RegisterResultViewModel.cs" />

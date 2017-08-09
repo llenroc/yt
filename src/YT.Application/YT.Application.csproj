@@ -198,13 +198,6 @@
     <Compile Include="Dto\PagedAndFilteredInputDto.cs" />
     <Compile Include="Dto\PagedInputDto.cs" />
     <Compile Include="Dto\PagedSortedAndFilteredInputDto.cs" />
-    <Compile Include="Editions\Dto\CreateOrUpdateEditionDto.cs" />
-    <Compile Include="Editions\Dto\EditionEditDto.cs" />
-    <Compile Include="Editions\Dto\FlatFeatureDto.cs" />
-    <Compile Include="Editions\EditionAppService.cs" />
-    <Compile Include="Editions\Dto\EditionListDto.cs" />
-    <Compile Include="Editions\Dto\GetEditionForEditOutput.cs" />
-    <Compile Include="Editions\IEditionAppService.cs" />
     <Compile Include="Authorization\Users\Exporting\IUserListExcelExporter.cs" />
     <Compile Include="Authorization\Users\Exporting\UserListExcelExporter.cs" />
     <Compile Include="Dto\FileDto.cs" />
@@ -282,9 +275,6 @@
     <Compile Include="Sessions\Dto\UserLoginInfoDto.cs" />
     <Compile Include="Sessions\ISessionAppService.cs" />
     <Compile Include="Sessions\SessionAppService.cs" />
-    <Compile Include="Tenants\Dashboard\Dto\GetMemberActivityOutput.cs" />
-    <Compile Include="Tenants\Dashboard\ITenantDashboardAppService.cs" />
-    <Compile Include="Tenants\Dashboard\TenantDashboardAppService.cs" />
     <Compile Include="Timing\Dto\GetTimezoneComboboxItemsInput.cs" />
     <Compile Include="Timing\Dto\GetTimezonesInput.cs" />
     <Compile Include="Timing\ITimingAppService.cs" />
