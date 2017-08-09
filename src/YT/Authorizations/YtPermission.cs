@@ -53,6 +53,10 @@ namespace YT.Authorizations
         public string Name { get; set; }
         //
         // 摘要:
+        //     Which side can use this permission.
+        public PermissionType PermissionType { get; set; }
+        //
+        // 摘要:
         //     Parent of this permission if one exists. If set, this permission can be granted
         //     only if parent is granted.
         public virtual YtPermission Parent { get; set; }

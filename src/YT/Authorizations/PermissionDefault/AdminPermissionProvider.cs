@@ -24,25 +24,25 @@ namespace YT.Authorizations.PermissionDefault
                    Children = new EditableList<PermissionDefinition>()
                    {
            #region 用户权限设置
-             new PermissionDefinition("pages.user","用户","用户权限")
+             new PermissionDefinition("pages.user","用户","用户权限",PermissionType.Control)
                        {
             Children = new EditableList<PermissionDefinition>()
             {
-                new PermissionDefinition("pages.user.add","添加用户","用户权限"),
-                new PermissionDefinition("pages.user.edit","编辑用户","用户权限"),
-                new PermissionDefinition("pages.user.delete","删除用户","用户权限"),
+                new PermissionDefinition("pages.user.add","添加用户","用户权限",PermissionType.Control),
+                new PermissionDefinition("pages.user.edit","编辑用户","用户权限",PermissionType.Control),
+                new PermissionDefinition("pages.user.delete","删除用户","用户权限",PermissionType.Control),
             }
                        },
         	#endregion
            #region 角色权限设置
-   new PermissionDefinition("pages.role","角色","角色权限")
-                       {
+             new PermissionDefinition("pages.role","角色","角色权限",PermissionType.Control)
+            {
             Children = new EditableList<PermissionDefinition>()
             {
-                new PermissionDefinition("pages.role.add","添加角色","角色权限"),
-                new PermissionDefinition("pages.role.edit","编辑角色","角色权限"),
-                new PermissionDefinition("pages.role.delete","删除角色","角色权限"),
-                new PermissionDefinition("pages.role.allow","分配角色","角色权限"),
+                new PermissionDefinition("pages.role.add","添加角色","角色权限",PermissionType.Control),
+                new PermissionDefinition("pages.role.edit","编辑角色","角色权限",PermissionType.Control),
+                new PermissionDefinition("pages.role.delete","删除角色","角色权限",PermissionType.Control),
+                new PermissionDefinition("pages.role.allow","分配角色","角色权限",PermissionType.Control),
             }
            }
 	#endregion    

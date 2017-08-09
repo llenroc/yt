@@ -58,6 +58,7 @@ namespace YT.Authorizations
                 menu.Name = definition.Name;
                 menu.ParentId = definition.ParentId;
                 menu.Name = definition.Name;
+                menu.PermissionType = definition.PermissionType;
                 menu.IsStatic = true;
                 if (menu.Id == default(int))
                 {

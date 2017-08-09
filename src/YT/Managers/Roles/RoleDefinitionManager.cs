@@ -8,8 +8,10 @@ using Abp.Authorization.Roles;
 using Abp.Configuration;
 using Abp.Dependency;
 using Abp.Domain.Repositories;
+using Castle.Components.DictionaryAdapter;
 using YT.Authorizations;
 using YT.Configuration;
+using YT.Managers.Roles.RoleDefaults;
 using YT.Managers.Roles.Startup;
 using YT.Navigations;
 
@@ -54,6 +56,8 @@ namespace YT.Managers.Roles
 
         private void AddOrUpdate(IEnumerable<RoleDefinition> definitions)
         {
+            var temp = _permissionRepository.GetAllList();
+
             foreach (var definition in definitions)
             {
                 var role = _roleRepository.FirstOrDefault(t => t.Name == definition.Name);
@@ -63,15 +67,34 @@ namespace YT.Managers.Roles
                 role.DisplayName = definition.DisplayName;
                 role.IsStatic = true;
                 role.IsDefault = definition.IsDefault;
-                var permissions = _permissionRepository.GetAllList();
+             
                 if (role.Id == default(int))
                 {
                     var defaultactive =  _settingManager.GetSettingValueForApplication<bool>(YtSettings.General.RoleDefaultActive);
                     role.IsActive = defaultactive;
-                    role.Permissions = permissions.Select(c => new RolePermissionSetting()
+                    if (role.Name.Equals(StaticNames.Role.Admin))
                     {
-                        IsGranted=true,Name=c.Name,TenantId=null
-                    }).ToList();
+                        var p = temp.Where(c=>c.PermissionType==PermissionType.Common||c.PermissionType==PermissionType.Control)
+                            .Select(c => new RolePermissionSetting()
+                        {
+                            IsGranted = true,
+                            Name = c.Name,
+                            TenantId = null
+                        }).ToList();
+                        role.Permissions = p;
+                    }
+                    else if(role.Name.Equals(StaticNames.Role.Default))
+                    {
+                        var p = temp.Where(c => c.PermissionType == PermissionType.Common || c.PermissionType == PermissionType.Operation)
+                          .Select(c => new RolePermissionSetting()
+                          {
+                              IsGranted = true,
+                              Name = c.Name,
+                              TenantId = null
+                          }).ToList();
+                        role.Permissions = p;
+                    }
+                   
                     _roleRepository.Insert(role);
                 }
                 else
