@@ -141,8 +141,6 @@
     <Compile Include="Configuration\YtSettingProvider.cs" />
     <Compile Include="Configuration\YtSettings.cs" />
     <Compile Include="IModuleConfig.cs" />
-    <Compile Include="Managers\Impersonation\ImpersonationCacheItem.cs" />
-    <Compile Include="Managers\Impersonation\ImpersonationCacheManagerExtensions.cs" />
     <Compile Include="Managers\MultiTenancy\Tenant.cs" />
     <Compile Include="Managers\Roles\RoleDefaults\AdminRoleProvider.cs" />
     <Compile Include="Managers\Roles\RoleDefaults\StaticNames.cs" />

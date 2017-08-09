@@ -23,8 +23,8 @@ namespace YT.Authorizations.PermissionDefault
                {
                    Children = new EditableList<PermissionDefinition>()
                    {
-        #region 用户权限设置
-   new PermissionDefinition("pages.user","用户","用户权限")
+           #region 用户权限设置
+             new PermissionDefinition("pages.user","用户","用户权限")
                        {
             Children = new EditableList<PermissionDefinition>()
             {
@@ -33,8 +33,8 @@ namespace YT.Authorizations.PermissionDefault
                 new PermissionDefinition("pages.user.delete","删除用户","用户权限"),
             }
                        },
-	#endregion
-                     #region 角色权限设置
+        	#endregion
+           #region 角色权限设置
    new PermissionDefinition("pages.role","角色","角色权限")
                        {
             Children = new EditableList<PermissionDefinition>()
@@ -44,7 +44,7 @@ namespace YT.Authorizations.PermissionDefault
                 new PermissionDefinition("pages.role.delete","删除角色","角色权限"),
                 new PermissionDefinition("pages.role.allow","分配角色","角色权限"),
             }
-                       }
+           }
 	#endregion    
                    }
                }

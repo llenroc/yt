@@ -191,7 +191,6 @@
     <Compile Include="Configuration\Tenants\TenantSettingsAppService_Tests.cs" />
     <Compile Include="General\ConnectionString_Tests.cs" />
     <Compile Include="MultiTenantFactAttribute.cs" />
-    <Compile Include="Localization\LanguageAppService_Tests.cs" />
     <Compile Include="MultiTenancy\TenantAppService_Tests.cs" />
     <Compile Include="MultiTenantTheoryAttribute.cs" />
     <Compile Include="Notifications\NotificationAppService_Tests.cs" />

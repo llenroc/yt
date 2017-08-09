@@ -16,7 +16,6 @@ namespace YT.Tests.Authorization.Users
 {
     public class UserAppService_Link_Tests : UserAppServiceTestBase
     {
-        private readonly IUserLinkAppService _userLinkAppService;
         private readonly IUserLinkManager _userLinkManager;
         private readonly UserManager _userManager;
         private readonly TenantManager _tenantManager;
@@ -24,7 +23,6 @@ namespace YT.Tests.Authorization.Users
 
         public UserAppService_Link_Tests()
         {
-            _userLinkAppService = Resolve<IUserLinkAppService>();
             _userLinkManager = Resolve<IUserLinkManager>();
             _userManager = Resolve<UserManager>();
             _tenantManager = Resolve<TenantManager>();
@@ -54,12 +52,7 @@ namespace YT.Tests.Authorization.Users
 
             //Act
             LoginAsDefaultTenantAdmin();
-            await _userLinkAppService.LinkToUser(new LinkToUserInput
-            {
-                TenancyName = "Test",
-                UsernameOrEmailAddress = "test",
-                Password = "123qwe"
-            });
+         
 
             //Assert
             var defaultTenantAdmin = await UsingDbContextAsync(context => context.Users.FirstOrDefaultAsync(u => u.TenantId == AbpSession.TenantId && u.Id == AbpSession.UserId));
@@ -91,11 +84,9 @@ namespace YT.Tests.Authorization.Users
 
             //Act
             //Link Default\admin -> Test\test
-            await _userLinkAppService.LinkToUser(linkToTestTenantUserInput);
 
             LoginAsTenant(Tenant.DefaultTenantName, "jnash");
             //Link Default\jnash->Test\test
-            await _userLinkAppService.LinkToUser(linkToTestTenantUserInput);
 
             //Assert
             var defaultTenantAdmin = await UsingDbContextAsync(context => context.Users.FirstOrDefaultAsync(u => u.TenantId == AbpSession.TenantId && u.UserName == User.AdminUserName));
@@ -164,12 +155,7 @@ namespace YT.Tests.Authorization.Users
             await CreateTestUsersForAccountLinkingAsync();
 
             //Act
-            await _userLinkAppService.LinkToUser(new LinkToUserInput
-            {
-                TenancyName = tenancyName,
-                UsernameOrEmailAddress = "jnash",
-                Password = "123qwe"
-            });
+          
 
             //Assert
             var linkedUser = await UsingDbContextAsync(context => context.Users.FirstOrDefaultAsync(u => u.UserName == "jnash"));

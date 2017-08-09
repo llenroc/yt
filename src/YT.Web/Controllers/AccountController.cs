@@ -39,11 +39,8 @@ using Recaptcha.Web;
 using Recaptcha.Web.Mvc;
 using Newtonsoft.Json;
 using YT.Authorization;
-using YT.Authorization.Roles;
-using YT.Authorization.Users;
 using YT.Configuration;
 using YT.Debugging;
-using YT.Managers.Impersonation;
 using YT.Managers.MultiTenancy;
 using YT.Managers.Roles;
 using YT.Managers.Users;
@@ -967,119 +964,17 @@ namespace YT.Web.Controllers
 
         #region Impersonation
 
-        [DisableAbpAntiForgeryTokenValidation]
-        public virtual async Task<JsonResult> Impersonate(ImpersonateModel model)
-        {
-            if (AbpSession.ImpersonatorUserId.HasValue)
-            {
-                throw new UserFriendlyException(L("CascadeImpersonationErrorMessage"));
-            }
+      //  [DisableAbpAntiForgeryTokenValidation]
 
-            if (AbpSession.TenantId.HasValue)
-            {
-                if (!model.TenantId.HasValue)
-                {
-                    throw new UserFriendlyException(L("FromTenantToHostImpersonationErrorMessage"));
-                }
-
-                if (model.TenantId.Value != AbpSession.TenantId.Value)
-                {
-                    throw new UserFriendlyException(L("DifferentTenantImpersonationErrorMessage"));
-                }
-            }
-
-            var result = await SaveImpersonationTokenAndGetTargetUrl(model.TenantId, model.UserId, false);
-            _authenticationManager.SignOutAll();
-            return result;
-        }
-
-        [UnitOfWork]
-        public virtual async Task<ActionResult> ImpersonateSignIn(string tokenId)
-        {
-            var cacheItem = await _cacheManager.GetImpersonationCache().GetOrDefaultAsync(tokenId);
-            if (cacheItem == null)
-            {
-                throw new UserFriendlyException(L("ImpersonationTokenErrorMessage"));
-            }
-
-            //Switch to requested tenant
-            _unitOfWorkManager.Current.SetTenantId(cacheItem.TargetTenantId);
-
-            //Get the user from tenant
-            var user = await _userManager.FindByIdAsync(cacheItem.TargetUserId);
-
-            //Create identity
-            var identity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-
-            if (!cacheItem.IsBackToImpersonator)
-            {
-                //Add claims for audit logging
-                if (cacheItem.ImpersonatorTenantId.HasValue)
-                {
-                    identity.AddClaim(new Claim(AbpClaimTypes.ImpersonatorTenantId, cacheItem.ImpersonatorTenantId.Value.ToString(CultureInfo.InvariantCulture)));
-                }
-
-                identity.AddClaim(new Claim(AbpClaimTypes.ImpersonatorUserId, cacheItem.ImpersonatorUserId.ToString(CultureInfo.InvariantCulture)));
-            }
-
-            _authenticationManager.SignOutAllAndSignIn(identity);
-
-            //Remove the cache item to prevent re-use
-            await _cacheManager.GetImpersonationCache().RemoveAsync(tokenId);
-
-            return RedirectToAction("Index", "Application");
-        }
-
+  
         public virtual JsonResult IsImpersonatedLogin()
         {
             return Json(new AjaxResponse { Result = AbpSession.ImpersonatorUserId.HasValue });
         }
 
-        public virtual async Task<JsonResult> BackToImpersonator()
-        {
-            if (!AbpSession.ImpersonatorUserId.HasValue)
-            {
-                throw new UserFriendlyException(L("NotImpersonatedLoginErrorMessage"));
-            }
+   
 
-            var result = await SaveImpersonationTokenAndGetTargetUrl(AbpSession.ImpersonatorTenantId, AbpSession.ImpersonatorUserId.Value, true);
-            _authenticationManager.SignOutAll();
-            return result;
-        }
-
-        private async Task<JsonResult> SaveImpersonationTokenAndGetTargetUrl(int? tenantId, long userId, bool isBackToImpersonator)
-        {
-            //Create a cache item
-            var cacheItem = new ImpersonationCacheItem(
-                tenantId,
-                userId,
-                isBackToImpersonator
-                );
-
-            if (!isBackToImpersonator)
-            {
-                cacheItem.ImpersonatorTenantId = AbpSession.TenantId;
-                cacheItem.ImpersonatorUserId = AbpSession.GetUserId();
-            }
-
-            //Create a random token and save to the cache
-            var tokenId = Guid.NewGuid().ToString();
-            await _cacheManager
-                .GetImpersonationCache()
-                .SetAsync(tokenId, cacheItem, TimeSpan.FromMinutes(1));
-
-            //Find tenancy name
-            string tenancyName = null;
-            if (tenantId.HasValue)
-            {
-                tenancyName = (await _tenantManager.GetByIdAsync(tenantId.Value)).TenancyName;
-            }
-
-            //Create target URL
-            var targetUrl = _webUrlService.GetSiteRootAddress(tenancyName) + "Account/ImpersonateSignIn?tokenId=" + tokenId;
-            return Json(new AjaxResponse { TargetUrl = targetUrl });
-        }
-
+    
         #endregion
 
         #region Linked Account
