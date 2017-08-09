@@ -189,7 +189,6 @@
     <Compile Include="Authorization\Users\ProfileAppService_Tests.cs" />
     <Compile Include="Configuration\Host\HostSettingsAppService_EmailSettings_Test.cs" />
     <Compile Include="Configuration\Tenants\TenantSettingsAppService_Tests.cs" />
-    <Compile Include="Editions\EditionAppService_Tests.cs" />
     <Compile Include="General\ConnectionString_Tests.cs" />
     <Compile Include="MultiTenantFactAttribute.cs" />
     <Compile Include="Localization\LanguageAppService_Tests.cs" />

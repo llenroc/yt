@@ -17,7 +17,7 @@ using Newtonsoft.Json;
 
 namespace YT.Configuration.Host
 {/// <summary>
- /// 
+ /// 设置项管理
  /// </summary>
     public class HostSettingsAppService : YtAppServiceBase, IHostSettingsAppService
     {
@@ -26,7 +26,7 @@ namespace YT.Configuration.Host
         private readonly ITimeZoneService _timeZoneService;
         readonly ISettingDefinitionManager _settingDefinitionManager;
         /// <summary>
-        /// 
+        /// ctor
         /// </summary>
         public HostSettingsAppService(
             IEmailSender emailSender,
@@ -42,7 +42,7 @@ namespace YT.Configuration.Host
 
         #region Get Settings
         /// <summary>
-        /// 
+        /// 获取所有的配置项
         /// </summary>
         public async Task<HostSettingsEditDto> GetAllSettings()
         {

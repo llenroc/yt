@@ -6,7 +6,9 @@ using Abp.Configuration.Startup;
 using Abp.Modules;
 using Abp.WebApi;
 using Swashbuckle.Application;
+using YT.Configuration.Tenants;
 using YT.MobileApp;
+using YT.MultiTenancy;
 
 namespace YT.WebApi
 {
@@ -27,6 +29,12 @@ namespace YT.WebApi
             Configuration.Modules.AbpWebApi().DynamicApiControllerBuilder
               .ForAll<IApplicationService>(typeof(MobileModule).Assembly, "mobile")
               .Build();
+
+            Configuration.Modules.AbpWebApi().DynamicApiControllerBuilder
+    .For<ITenantAppService>("app/tenant").WithApiExplorer(false).Build();
+            Configuration.Modules.AbpWebApi().DynamicApiControllerBuilder
+  .For<ITenantSettingsAppService>("app/tenantsettings").WithApiExplorer(false).Build();
+
             Configuration.Modules.AbpWebApi().HttpConfiguration.Filters.Add(new HostAuthenticationFilter("Bearer"));
 
             ConfigureSwaggerUi(); //Remove this line to disable swagger UI.
