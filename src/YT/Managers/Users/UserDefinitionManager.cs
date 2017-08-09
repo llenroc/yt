@@ -71,8 +71,8 @@ namespace YT.Managers.Users
                 var roles = _roleRepository.GetAllList();
                 if (user.Id == default(int))
                 {
-                    var defaultactive = true;
-                        // _settingManager.GetSettingValueForApplication<bool>(YtSettings.General.UserDefaultActive);
+                    var defaultactive = 
+                         _settingManager.GetSettingValueForApplication<bool>(YtSettings.General.UserDefaultActive);
                     user.Roles = roles.Select(c => new UserRole()
                     {
                         TenantId = null,

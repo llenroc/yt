@@ -27,7 +27,9 @@ namespace YT.Navigations
     /// <param name="levelEntityHandler"></param>
     /// <param name="settingManager"></param>
       public MenuDefinitionManager(IRepository<Menu> menuRepository,
-          IMenuConfiguration menuConfiguration, ILevelEntityHandler<Menu> levelEntityHandler, ISettingManager settingManager)
+          IMenuConfiguration menuConfiguration,
+          ILevelEntityHandler<Menu> levelEntityHandler,
+          ISettingManager settingManager)
       {
           _menuRepository = menuRepository;
           _menuConfiguration = menuConfiguration;
@@ -74,7 +76,7 @@ namespace YT.Navigations
                 if (menu.Id == default(int))
                 {
 
-                    var defaultactive = true;// _settingManager.GetSettingValueForApplication<bool>(YtSettings.General.MenuDefaultActive);
+                    var defaultactive = _settingManager.GetSettingValueForApplication<bool>(YtSettings.General.MenuDefaultActive);
                     menu.IsActive = defaultactive;
                     _levelEntityHandler.Create(menu);
                 }

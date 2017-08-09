@@ -160,12 +160,12 @@
     <Compile Include="Handlers\ILevelEntityHandler.cs" />
     <Compile Include="Navigations\IMenuDefinitionManager.cs" />
     <Compile Include="Handlers\ITreeLevel.cs" />
-    <Compile Include="Navigations\LevelEntityHandler.cs" />
+    <Compile Include="Handlers\LevelEntityHandler.cs" />
     <Compile Include="Navigations\Menu.cs" />
     <Compile Include="Navigations\MenuDefault\AdminMenuProvider.cs" />
     <Compile Include="Navigations\MenuDefinition.cs" />
     <Compile Include="Navigations\MenuDefinitionManager.cs" />
-    <Compile Include="Navigations\MenuDefinitionProviderContext.cs" />
+    <Compile Include="DefinitionProviderContext.cs" />
     <Compile Include="Navigations\MenuProvider.cs" />
     <Compile Include="Navigations\Startup\MenuConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

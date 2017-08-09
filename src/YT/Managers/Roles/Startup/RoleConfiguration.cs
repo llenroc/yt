@@ -10,7 +10,7 @@ namespace YT.Managers.Roles.Startup
 {
    public class RoleConfiguration: IRoleConfiguration
     {
-        public ITypeList<RoleProvider> Providers { get; private set; }
+        public ITypeList<RoleProvider> Providers { get; }
 
         public RoleConfiguration()
         {

@@ -62,7 +62,7 @@ namespace YT.Authorizations
                 if (menu.Id == default(int))
                 {
 
-                    var defaultactive = true;// _settingManager.GetSettingValueForApplication<bool>(YtSettings.General.PermissionDefaultActive);
+                    var defaultactive =  _settingManager.GetSettingValueForApplication<bool>(YtSettings.General.PermissionDefaultActive);
                     menu.IsActive = defaultactive;
                     _levelEntityHandler.Create(menu);
                 }

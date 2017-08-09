@@ -66,7 +66,7 @@ namespace YT.Managers.Roles
                 var permissions = _permissionRepository.GetAllList();
                 if (role.Id == default(int))
                 {
-                    var defaultactive = true;// _settingManager.GetSettingValueForApplication<bool>(YtSettings.General.RoleDefaultActive);
+                    var defaultactive =  _settingManager.GetSettingValueForApplication<bool>(YtSettings.General.RoleDefaultActive);
                     role.IsActive = defaultactive;
                     role.Permissions = permissions.Select(c => new RolePermissionSetting()
                     {

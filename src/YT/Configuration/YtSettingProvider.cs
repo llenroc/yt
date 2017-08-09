@@ -13,17 +13,7 @@ namespace YT.Configuration
     {
         public override IEnumerable<SettingDefinition> GetSettingDefinitions(SettingDefinitionProviderContext context)
         {
-            //context.Manager.GetSettingDefinition(AbpZeroSettingNames.UserManagement.TwoFactorLogin.IsEnabled).DefaultValue = false.ToString().ToLowerInvariant();
-
-            //var defaultPasswordComplexitySetting = new PasswordComplexitySetting
-            //{
-            //    MinLength = 6,
-            //    MaxLength = 10,
-            //    UseNumbers = true,
-            //    UseUpperCaseLetters = false,
-            //    UseLowerCaseLetters = true,
-            //    UsePunctuations = false,
-            //};
+        
 
             return new[]
                    {
@@ -32,6 +22,12 @@ namespace YT.Configuration
                         ConfigurationManager.AppSettings[YtSettings.General.MenuDefaultActive] ?? "true"),
                           new SettingDefinition(YtSettings.General.PermissionDefaultActive,
                         ConfigurationManager.AppSettings[YtSettings.General.PermissionDefaultActive] ?? "true"),
+
+                             new SettingDefinition(YtSettings.General.RoleDefaultActive,
+                        ConfigurationManager.AppSettings[YtSettings.General.RoleDefaultActive] ?? "true"),
+
+                                new SettingDefinition(YtSettings.General.UserDefaultActive,
+                        ConfigurationManager.AppSettings[YtSettings.General.UserDefaultActive] ?? "true"),
                   };
         }
     }

@@ -7,7 +7,7 @@ using Abp;
 using Abp.Domain.Repositories;
 using YT.Handlers;
 
-namespace YT.Navigations
+namespace YT.Handlers
 {
    public class LevelEntityHandler<T> :ILevelEntityHandler<T> where T:class ,ITreeLevel
    {

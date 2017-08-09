@@ -11,7 +11,7 @@ namespace YT.Authorizations.Startup
 {
    public class PermissionConfiguration: IPermissionConfiguration
     {
-        public ITypeList<PermissionProvider> Providers { get; private set; }
+        public ITypeList<PermissionProvider> Providers { get;  }
 
         public PermissionConfiguration()
         {

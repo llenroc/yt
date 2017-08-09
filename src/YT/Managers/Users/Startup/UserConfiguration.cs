@@ -10,7 +10,7 @@ namespace YT.Managers.Users.Startup
 {
    public class UserConfiguration: IUserConfiguration
     {
-        public ITypeList<UserProvider> Providers { get; private set; }
+        public ITypeList<UserProvider> Providers { get;  }
 
         public UserConfiguration()
         {
